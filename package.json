@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "elm make src/Main.elm --output main.js --debug"
+    "build": "npm build && elm make src/Main.elm --output main.js --debug"
   },
   "repository": {
     "type": "git",
