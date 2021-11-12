@@ -1,4 +1,4 @@
-import 'node_modules/codemirror/lib/codemirror.js'
+import './node_modules/codemirror/lib/codemirror.js'
 import './node_modules/codemirror/addon/lint/lint.js'
 import './myhtmlhint.js'
 import './node_modules/codemirror/addon/hint/show-hint.js'
