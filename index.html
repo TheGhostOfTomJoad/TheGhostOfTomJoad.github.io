@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Main</title>
+
+  <!-- <link rel="stylesheet" href="node_modules/codemirror/lib/codemirror.css"> -->
+  <link rel="stylesheet" href="./codemirror.css">
+  <link rel="FaviconIcon" href="favicon.ico" type="image/x-icon">
+
+
+  <link rel="stylesheet" href="node_modules/codemirror/theme/monokai.css">
+  <link rel="stylesheet" href="node_modules/codemirror/addon/hint/show-hint.css">
+  <link rel="stylesheet" href="node_modules/codemirror/addon/lint/lint.css">
+  <!-- <link rel="stylesheet" href="example.css"> -->
+
+  <!--  <link rel="stylesheet" href="https://raw.githubusercontent.com/htmlhint/brackets-htmlhint/master/htmlhint/htmlhint.js"> -->
+  <!--<script src="https://raw.githubusercontent.com/htmlhint/brackets-htmlhint/master/htmlhint/htmlhint.js"></script> -->
+  <script src="myhtmlhint.js"></script>
+  <!-- <link rel="stylesheet" href="node_modules/codemirror/theme/tomorrow-night-eighties.css"> -->
+</head>
+
+<body style="margin: 0; padding: 0; height: 100%;"></body>
+
+<body>
+  <!-- The Codemirror imports we need -->
+  <script type="module" src="myhtmlhint.js"></script>
+  <script type="module" src="codemirror.js"></script>
+  <script src="main.js"></script>
+
+  <div id="elm"></div>
+  <script>
+    var app = Elm.Main.init({
+      node: document.getElementById('elm'),
+      flags: null
+
+    });
+  </script>
+</body>
+
+</html>
