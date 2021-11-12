@@ -10846,7 +10846,7 @@ var $elm$core$Basics$never = function (_v0) {
 var $elm$browser$Browser$element = _Browser_element;
 var $author$project$Main$init = function (_v0) {
 	return _Utils_Tuple2(
-		{csseditorValue: '', htmleditorValue: ' ', viewBoth: true},
+		{csseditorValue: '', htmleditorValue: ' ', viewBoth: false},
 		$elm$core$Platform$Cmd$none);
 };
 var $elm$core$Platform$Sub$batch = _Platform_batch;
