@@ -4,6 +4,7 @@ import Html.Parser
 import Html.Parser.Util
 import Char.Extra
 import Html
+import String exposing (trim)
 
 type HTMLCode =String
 
@@ -50,4 +51,4 @@ removeDoubleSpace =
 
 removeSpaceandControl : String -> String
 removeSpaceandControl s =
-    s |> removeControl |> removeDoubleSpace
+    s |> removeControl |> removeDoubleSpace |> trim
