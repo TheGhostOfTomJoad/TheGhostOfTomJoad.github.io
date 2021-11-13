@@ -55,7 +55,8 @@ heightToCodemirrorcss height=
    String.concat[ ".CodeMirror { height: ",  String.fromInt height ,"px ;}"]
 
 bigCodeMirrorCss : String
-bigCodeMirrorCss =  heightToCodemirrorcss bigEditorHeight--".CodeMirror { min-height: 100%; height : 100%; max-height : 100%}"
+bigCodeMirrorCss =   heightToCodemirrorcss bigEditorHeight
+ --".CodeMirror { min-height: 100%; height : 100%; max-height : 100%}"
  --".CodeMirror { min-height: 100%;}"--
 
 smallCodeMirrorCss : String
