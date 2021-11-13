@@ -59,7 +59,7 @@ bigCodeMirrorCss =  heightToCodemirrorcss bigEditorHeight--".CodeMirror { min-he
  --".CodeMirror { min-height: 100%;}"--
 
 smallCodeMirrorCss : String
-smallCodeMirrorCss = heightToCodemirrorcss smallEditorHeight -- ".CodeMirror { min-height: 100%;}"
+smallCodeMirrorCss = heightToCodemirrorcss smallEditorHeight -- ".CodeMirror { min-height: 100%; flex:1}" -- -- 
 
 textstyle : List (Attribute msg)
 textstyle =
