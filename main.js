@@ -5487,7 +5487,7 @@ var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
 var $author$project$Main$init = function (_v0) {
 	return _Utils_Tuple2(
-		{O: '', S: ' ', an: false},
+		{O: '', S: ' ', an: true},
 		$elm$core$Platform$Cmd$none);
 };
 var $elm$core$Platform$Sub$batch = _Platform_batch;
@@ -11469,10 +11469,6 @@ var $mdgriffith$elm_ui$Internal$Model$Height = function (a) {
 	return {$: 8, a: a};
 };
 var $mdgriffith$elm_ui$Element$height = $mdgriffith$elm_ui$Internal$Model$Height;
-var $mdgriffith$elm_ui$Internal$Model$Px = function (a) {
-	return {$: 0, a: a};
-};
-var $mdgriffith$elm_ui$Element$px = $mdgriffith$elm_ui$Internal$Model$Px;
 var $mdgriffith$elm_ui$Internal$Model$Width = function (a) {
 	return {$: 7, a: a};
 };
@@ -11480,8 +11476,7 @@ var $mdgriffith$elm_ui$Element$width = $mdgriffith$elm_ui$Internal$Model$Width;
 var $author$project$Styles$bigEditorStyle = _List_fromArray(
 	[
 		$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill),
-		$mdgriffith$elm_ui$Element$height(
-		$mdgriffith$elm_ui$Element$px($author$project$Styles$bigEditorHeight))
+		$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$fill)
 	]);
 var $author$project$CodeMirror$HTML = 4;
 var $author$project$Main$HTMLEditorChanged = function (a) {
@@ -15361,7 +15356,7 @@ var $author$project$Main$wrapcss = function (myCssString) {
 				$elm$html$Html$text(myCssString)
 			]));
 };
-var $author$project$Main$editorRow = function (m) {
+var $author$project$Main$resultRow = function (m) {
 	return A2(
 		$mdgriffith$elm_ui$Element$column,
 		$author$project$Styles$textColumnStyle,
@@ -15603,7 +15598,7 @@ var $author$project$Main$viewOneEditor = function (m) {
 										$author$project$Main$codemirrorHTML(m)
 									]))))
 					])),
-				$author$project$Main$editorRow(m)
+				$author$project$Main$resultRow(m)
 			]));
 };
 var $author$project$CodeMirror$CSS = 6;
@@ -15626,8 +15621,7 @@ var $author$project$Styles$smallCodeMirrorCss = $author$project$Styles$heightToC
 var $author$project$Styles$smallEditorstyle = _List_fromArray(
 	[
 		$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill),
-		$mdgriffith$elm_ui$Element$height(
-		$mdgriffith$elm_ui$Element$px($author$project$Styles$smallEditorHeight))
+		$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$fill)
 	]);
 var $author$project$Main$viewTwoEditors = function (m) {
 	return A2(
@@ -15667,7 +15661,7 @@ var $author$project$Main$viewTwoEditors = function (m) {
 										$author$project$Main$codemirrorCSS(m)
 									]))))
 					])),
-				$author$project$Main$editorRow(m)
+				$author$project$Main$resultRow(m)
 			]));
 };
 var $author$project$Main$view = function (m) {

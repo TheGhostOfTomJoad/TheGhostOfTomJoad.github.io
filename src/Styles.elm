@@ -36,7 +36,7 @@ smallEditorstyle : List (Attribute msg)
 smallEditorstyle =
     [ 
       width fill
-    , height (px smallEditorHeight)
+    , height fill--(px smallEditorHeight)
     ]
 
 bigEditorHeight : number
@@ -45,7 +45,8 @@ bigEditorHeight = 910
 bigEditorStyle : List (Attribute msg)
 bigEditorStyle =
     [ width fill
-    , height (px bigEditorHeight)
+    --, height (px bigEditorHeight)
+    , height fill
     ]
 
 heightToCodemirrorcss : Int -> String
@@ -54,11 +55,11 @@ heightToCodemirrorcss height=
    String.concat[ ".CodeMirror { height: ",  String.fromInt height ,"px ;}"]
 
 bigCodeMirrorCss : String
-bigCodeMirrorCss = heightToCodemirrorcss bigEditorHeight
-
+bigCodeMirrorCss =  heightToCodemirrorcss bigEditorHeight--".CodeMirror { min-height: 100%; height : 100%; max-height : 100%}"
+ --".CodeMirror { min-height: 100%;}"--
 
 smallCodeMirrorCss : String
-smallCodeMirrorCss = heightToCodemirrorcss smallEditorHeight
+smallCodeMirrorCss = heightToCodemirrorcss smallEditorHeight -- ".CodeMirror { min-height: 100%;}"
 
 textstyle : List (Attribute msg)
 textstyle =

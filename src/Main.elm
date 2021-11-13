@@ -54,7 +54,7 @@ init : D.Value -> ( Model, Cmd Msg )
 init _ =
     ( { htmleditorValue = " "
       , csseditorValue = ""
-      , viewBoth = False
+      , viewBoth = True
 
       --     , uploadedCode = Nothing
       }
@@ -141,8 +141,8 @@ saveAndChangeButton =
     Element.row [ spacing 750 ] [ saveHTMLButton, changeViewButton ]
 
 
-editorRow : { a | csseditorValue : String, htmleditorValue : String } -> Element msg
-editorRow m = Element.column
+resultRow : { a | csseditorValue : String, htmleditorValue : String } -> Element msg
+resultRow m = Element.column
             textColumnStyle
             [ el [] (html (div [] (wrapcss m.csseditorValue :: textHtml (removeSpaceandControl m.htmleditorValue))))
             ]
@@ -158,7 +158,7 @@ viewTwoEditors m =
             , saveCSSButton
             , el smallEditorstyle (html (div [] [ wrapcss smallCodeMirrorCss, codemirrorCSS m ]))
             ]
-        , editorRow m
+        , resultRow m
         ]
 
 
@@ -172,7 +172,7 @@ viewOneEditor m =
             [ saveHTMLButton 
             , el bigEditorStyle (html (div [] [ wrapcss bigCodeMirrorCss, codemirrorHTML m ]))
             ]
-        , editorRow m
+        , resultRow m
         ]
 
 
