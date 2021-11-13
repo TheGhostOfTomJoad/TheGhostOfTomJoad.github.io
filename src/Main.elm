@@ -54,7 +54,7 @@ init : D.Value -> ( Model, Cmd Msg )
 init _ =
     ( { htmleditorValue = " "
       , csseditorValue = ""
-      , viewBoth = False
+      , viewBoth = True
 
       --     , uploadedCode = Nothing
       }
