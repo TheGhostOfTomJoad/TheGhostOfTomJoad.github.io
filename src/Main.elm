@@ -7,12 +7,12 @@ module Main exposing (..)
 import Browser
 import CodeMirror exposing (KeyMap(..), Mode(..), Theme(..), codemirrorHelper)
 import Element exposing (..)
-import Styles exposing (..)
 import Element.Input exposing (button)
 import File.Download as Download
 import Html exposing (Html, div)
 import HtmlHelpers exposing (removeSpaceandControl, textHtml)
 import Json.Decode as D
+import Styles exposing (..)
 import Time exposing (Weekday(..))
 
 
@@ -54,7 +54,7 @@ init : D.Value -> ( Model, Cmd Msg )
 init _ =
     ( { htmleditorValue = " "
       , csseditorValue = ""
-      , viewBoth = True
+      , viewBoth = False
 
       --     , uploadedCode = Nothing
       }
@@ -124,12 +124,20 @@ update msg m =
 --Sync -> ( m, Cmd.none)
 
 
+emptyButton : Element Msg
+emptyButton =
+    button buttonstyle { onPress = Just NoOp, label = text "" }
+
+
 saveHTMLButton : Element Msg
 saveHTMLButton =
     button buttonstyle { onPress = Just SaveHTML, label = text "💾" }
 
+
 saveCSSButton : Element Msg
-saveCSSButton =  button buttonstyle { onPress = Just SaveCSS, label = text "💾" }
+saveCSSButton =
+    button buttonstyle { onPress = Just SaveCSS, label = text "💾" }
+
 
 changeViewButton : Element Msg
 changeViewButton =
@@ -141,20 +149,25 @@ saveAndChangeButton =
     Element.row [ spacing 750 ] [ saveHTMLButton, changeViewButton ]
 
 
-resultRow : { a | csseditorValue : String, htmleditorValue : String } -> Element msg
-resultRow m = Element.column
-            textColumnStyle
-            [ el [] (html (div [] (wrapcss m.csseditorValue :: textHtml (removeSpaceandControl m.htmleditorValue))))
-            ]
+
+--resultRow : { a | csseditorValue : String, htmleditorValue : String } -> Element msg
+
+
+resultRow : { a | csseditorValue : String, htmleditorValue : String } -> Element Msg
+resultRow m =
+    Element.column
+        textColumnStyle
+        [ --emptyButton,
+          el [] (html (div [] (wrapcss m.csseditorValue :: textHtml (removeSpaceandControl m.htmleditorValue))))
+        ]
 
 
 viewTwoEditors : { a | htmleditorValue : String, csseditorValue : String } -> Element Msg
 viewTwoEditors m =
-
     Element.row rowStyle
         [ Element.column editorColumnStyle
-            [ saveHTMLButton--saveAndChangeButton
-            , el smallEditorstyle (html (div [] [ wrapcss smallCodeMirrorCss, codemirrorHTML m ]))--el smallEditorstyle (html (codemirrorHTML m))
+            [ saveHTMLButton --saveAndChangeButton
+            , el smallEditorstyle (html (div [] [ wrapcss smallCodeMirrorCss, codemirrorHTML m ])) --el smallEditorstyle (html (codemirrorHTML m))
             , saveCSSButton
             , el smallEditorstyle (html (div [] [ wrapcss smallCodeMirrorCss, codemirrorCSS m ]))
             ]
@@ -163,17 +176,26 @@ viewTwoEditors m =
 
 
 
-
-
 viewOneEditor : { a | htmleditorValue : String, csseditorValue : String } -> Element Msg
 viewOneEditor m =
     Element.row rowStyle
         [ Element.column editorColumnStyle
-            [ saveHTMLButton 
+            [ saveHTMLButton
             , el bigEditorStyle (html (div [] [ wrapcss bigCodeMirrorCss, codemirrorHTML m ]))
             ]
         , resultRow m
         ]
+
+
+-- viewOneEditor : { a | htmleditorValue : String, csseditorValue : String } -> Element Msg
+-- viewOneEditor m =
+--     Element.column rowStyle
+--         [ saveHTMLButton
+--         , Element.row editorColumnStyle
+--             [ el bigEditorStyle (html (div [] [ wrapcss bigCodeMirrorCss, codemirrorHTML m ]))
+--             , el resultStyle (html (div [] (wrapcss m.csseditorValue :: textHtml (removeSpaceandControl m.htmleditorValue))))
+--             ]
+--         ]
 
 
 viewHelper : a -> (a -> Element msg) -> Html msg
@@ -187,7 +209,7 @@ viewHelper m f =
                 }
             ]
         }
-        []
+        [ height shrink, width shrink ]
         (f m)
 
 
@@ -202,6 +224,8 @@ view m =
 
 
 --for debugging
+
+
 viewOnlyEditor : { a | editorValue : { b | htmleditorValue : String } } -> Html Msg
 viewOnlyEditor m =
     codemirrorHTML m.editorValue
