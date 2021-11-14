@@ -27,10 +27,12 @@ buttonstyle =
     , Border.color spotifyColors.background
     , Background.color spotifyColors.background
     , Font.size 30
+    ,spacing 10
+    , padding 10
     ]
 
 smallEditorHeight : number
-smallEditorHeight = 429
+smallEditorHeight = 370
 
 smallEditorstyle : List (Attribute msg)
 smallEditorstyle =
@@ -40,7 +42,7 @@ smallEditorstyle =
     ]
 
 bigEditorHeight : number
-bigEditorHeight = 865
+bigEditorHeight = 808
 
 bigEditorStyle : List (Attribute msg)
 bigEditorStyle =
@@ -75,7 +77,7 @@ textstyle =
 textColumnStyle : List (Attr () msg)
 textColumnStyle =
     [ Border.color spotifyColors.background
-    , Border.widthEach { bottom = 10, left = 10, right = 10, top = 50 }
+    --, Border.widthEach { bottom = 10, left = 10, right = 10, top = 50 }
     , Background.color spotifyColors.primarytext
     , height fill
     , spacing 10
@@ -84,17 +86,22 @@ textColumnStyle =
     ]
 
 
+resultStyle : List (Attr () msg)
 resultStyle = [ Border.color spotifyColors.background
    -- , Border.widthEach { bottom = 22, left = 10, right = 10, top = 52 }
     , Background.color spotifyColors.primarytext
-    , height shrink--fill
+    , height fill--fill
     , spacing 10
     , padding 10
-    , width shrink
+    , width fill
     ]
 
 editorColumnStyle : List (Attribute msg)
 editorColumnStyle = [ spacing 10, padding 10, height shrink, width shrink, Font.size 14 ]
+
+
+rowEditorResStyle : List (Attribute msg)
+rowEditorResStyle = [ spacing 10, padding 10, height fill, width fill, Font.size 14 ]
 
 rowStyle : List (Attr () msg)
 rowStyle = [ Background.color spotifyColors.background, height fill, spacing 20, width fill, padding 20 ]

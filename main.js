@@ -2704,7 +2704,7 @@ var _VirtualDom_mapEventTuple = F2(function(func, tuple)
 var _VirtualDom_mapEventRecord = F2(function(func, record)
 {
 	return {
-		I: func(record.I),
+		K: func(record.K),
 		aV: record.aV,
 		aQ: record.aQ
 	}
@@ -2974,7 +2974,7 @@ function _VirtualDom_makeCallback(eventNode, initialHandler)
 		// 3 = Custom
 
 		var value = result.a;
-		var message = !tag ? value : tag < 3 ? value.a : value.I;
+		var message = !tag ? value : tag < 3 ? value.a : value.K;
 		var stopPropagation = tag == 1 ? value.b : tag == 3 && value.aV;
 		var currentEventNode = (
 			stopPropagation && event.stopPropagation(),
@@ -5487,7 +5487,7 @@ var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
 var $author$project$Main$init = function (_v0) {
 	return _Utils_Tuple2(
-		{O: '', S: ' ', an: false},
+		{I: '', J: ' ', an: false},
 		$elm$core$Platform$Cmd$none);
 };
 var $elm$core$Platform$Sub$batch = _Platform_batch;
@@ -5513,26 +5513,26 @@ var $author$project$Main$update = F2(
 				return _Utils_Tuple2(m, $elm$core$Platform$Cmd$none);
 			case 1:
 				var v = msg.a;
-				return (!_Utils_eq(m.S, v)) ? _Utils_Tuple2(
+				return (!_Utils_eq(m.J, v)) ? _Utils_Tuple2(
 					_Utils_update(
 						m,
-						{S: v}),
+						{J: v}),
 					$elm$core$Platform$Cmd$none) : _Utils_Tuple2(m, $elm$core$Platform$Cmd$none);
 			case 2:
 				var v = msg.a;
-				return (!_Utils_eq(m.O, v)) ? _Utils_Tuple2(
+				return (!_Utils_eq(m.I, v)) ? _Utils_Tuple2(
 					_Utils_update(
 						m,
-						{O: v}),
+						{I: v}),
 					$elm$core$Platform$Cmd$none) : _Utils_Tuple2(m, $elm$core$Platform$Cmd$none);
 			case 3:
 				return _Utils_Tuple2(
 					m,
-					A3($elm$file$File$Download$string, 'my_code.html', 'text/html', m.S));
+					A3($elm$file$File$Download$string, 'my_code.html', 'text/html', m.J));
 			case 4:
 				return _Utils_Tuple2(
 					m,
-					A3($elm$file$File$Download$string, 'my_code.css', 'text/css', m.O));
+					A3($elm$file$File$Download$string, 'my_code.css', 'text/css', m.I));
 			default:
 				return _Utils_Tuple2(
 					_Utils_update(
@@ -8086,7 +8086,7 @@ var $elm$core$String$concat = function (strings) {
 var $mdgriffith$elm_ui$Internal$Style$Intermediate = $elm$core$Basics$identity;
 var $mdgriffith$elm_ui$Internal$Style$emptyIntermediate = F2(
 	function (selector, closing) {
-		return {aq: closing, m: _List_Nil, K: _List_Nil, y: selector};
+		return {aq: closing, m: _List_Nil, M: _List_Nil, y: selector};
 	});
 var $mdgriffith$elm_ui$Internal$Style$renderRules = F2(
 	function (_v0, rulesToRender) {
@@ -8100,10 +8100,10 @@ var $mdgriffith$elm_ui$Internal$Style$renderRules = F2(
 						return _Utils_update(
 							rendered,
 							{
-								K: A2(
+								M: A2(
 									$elm$core$List$cons,
 									_Utils_Tuple2(name, val),
-									rendered.K)
+									rendered.M)
 							});
 					case 3:
 						var _v2 = rule.a;
@@ -8115,7 +8115,7 @@ var $mdgriffith$elm_ui$Internal$Style$renderRules = F2(
 							{
 								m: A2(
 									$elm$core$List$cons,
-									{aq: '\n}', m: _List_Nil, K: props, y: '@supports (' + (prop + (':' + (value + (') {' + parent.y))))},
+									{aq: '\n}', m: _List_Nil, M: props, y: '@supports (' + (prop + (':' + (value + (') {' + parent.y))))},
 									rendered.m)
 							});
 					case 5:
@@ -8207,11 +8207,11 @@ var $mdgriffith$elm_ui$Internal$Style$renderCompact = function (styleClasses) {
 				values));
 	};
 	var renderClass = function (rule) {
-		var _v2 = rule.K;
+		var _v2 = rule.M;
 		if (!_v2.b) {
 			return '';
 		} else {
-			return rule.y + ('{' + (renderValues(rule.K) + (rule.aq + '}')));
+			return rule.y + ('{' + (renderValues(rule.M) + (rule.aq + '}')));
 		}
 	};
 	var renderIntermediate = function (_v0) {
@@ -9676,11 +9676,11 @@ var $mdgriffith$elm_ui$Internal$Model$createElement = F3(
 				return $mdgriffith$elm_ui$Internal$Model$Unstyled(
 					A5(
 						$mdgriffith$elm_ui$Internal$Model$finalizeNode,
-						rendered.R,
+						rendered.S,
 						rendered.T,
-						rendered.M,
+						rendered.O,
 						$mdgriffith$elm_ui$Internal$Model$Keyed(
-							A3($mdgriffith$elm_ui$Internal$Model$addKeyedChildren, 'nearby-element-pls', keyed, rendered.N)),
+							A3($mdgriffith$elm_ui$Internal$Model$addKeyedChildren, 'nearby-element-pls', keyed, rendered.P)),
 						$mdgriffith$elm_ui$Internal$Model$NoStyleSheet));
 			} else {
 				var allStyles = newStyles;
@@ -9688,11 +9688,11 @@ var $mdgriffith$elm_ui$Internal$Model$createElement = F3(
 					{
 						cW: A4(
 							$mdgriffith$elm_ui$Internal$Model$finalizeNode,
-							rendered.R,
+							rendered.S,
 							rendered.T,
-							rendered.M,
+							rendered.O,
 							$mdgriffith$elm_ui$Internal$Model$Keyed(
-								A3($mdgriffith$elm_ui$Internal$Model$addKeyedChildren, 'nearby-element-pls', keyed, rendered.N))),
+								A3($mdgriffith$elm_ui$Internal$Model$addKeyedChildren, 'nearby-element-pls', keyed, rendered.P))),
 						dG: allStyles
 					});
 			}
@@ -9710,11 +9710,11 @@ var $mdgriffith$elm_ui$Internal$Model$createElement = F3(
 				return $mdgriffith$elm_ui$Internal$Model$Unstyled(
 					A5(
 						$mdgriffith$elm_ui$Internal$Model$finalizeNode,
-						rendered.R,
+						rendered.S,
 						rendered.T,
-						rendered.M,
+						rendered.O,
 						$mdgriffith$elm_ui$Internal$Model$Unkeyed(
-							A2($mdgriffith$elm_ui$Internal$Model$addChildren, unkeyed, rendered.N)),
+							A2($mdgriffith$elm_ui$Internal$Model$addChildren, unkeyed, rendered.P)),
 						$mdgriffith$elm_ui$Internal$Model$NoStyleSheet));
 			} else {
 				var allStyles = newStyles;
@@ -9722,11 +9722,11 @@ var $mdgriffith$elm_ui$Internal$Model$createElement = F3(
 					{
 						cW: A4(
 							$mdgriffith$elm_ui$Internal$Model$finalizeNode,
-							rendered.R,
+							rendered.S,
 							rendered.T,
-							rendered.M,
+							rendered.O,
 							$mdgriffith$elm_ui$Internal$Model$Unkeyed(
-								A2($mdgriffith$elm_ui$Internal$Model$addChildren, unkeyed, rendered.N))),
+								A2($mdgriffith$elm_ui$Internal$Model$addChildren, unkeyed, rendered.P))),
 						dG: allStyles
 					});
 			}
@@ -10277,24 +10277,24 @@ var $mdgriffith$elm_ui$Internal$Model$gatherAttrRecursive = F8(
 				var _v1 = $mdgriffith$elm_ui$Internal$Model$transformClass(transform);
 				if (_v1.$ === 1) {
 					return {
-						M: A2(
+						O: A2(
 							$elm$core$List$cons,
 							$elm$html$Html$Attributes$class(classes),
 							attrs),
-						N: children,
-						R: has,
+						P: children,
+						S: has,
 						T: node,
 						dG: styles
 					};
 				} else {
 					var _class = _v1.a;
 					return {
-						M: A2(
+						O: A2(
 							$elm$core$List$cons,
 							$elm$html$Html$Attributes$class(classes + (' ' + _class)),
 							attrs),
-						N: children,
-						R: has,
+						P: children,
+						S: has,
 						T: node,
 						dG: A2(
 							$elm$core$List$cons,
@@ -11464,7 +11464,7 @@ var $author$project$Main$viewHelper = F2(
 				]),
 			f(m));
 	});
-var $author$project$Styles$bigEditorHeight = 865;
+var $author$project$Styles$bigEditorHeight = 808;
 var $author$project$Styles$heightToCodemirrorcss = function (height) {
 	return $elm$core$String$concat(
 		_List_fromArray(
@@ -11575,7 +11575,7 @@ var $author$project$CodeMirror$codemirrorHelper = F5(
 			_List_Nil);
 	});
 var $author$project$Main$codemirrorHTML = function (m) {
-	return A5($author$project$CodeMirror$codemirrorHelper, 4, 2, 0, m.S, $author$project$Main$HTMLEditorChanged);
+	return A5($author$project$CodeMirror$codemirrorHelper, 4, 2, 0, m.J, $author$project$Main$HTMLEditorChanged);
 };
 var $mdgriffith$elm_ui$Internal$Model$AsColumn = 1;
 var $mdgriffith$elm_ui$Internal$Model$asColumn = 1;
@@ -11597,57 +11597,6 @@ var $mdgriffith$elm_ui$Element$column = F2(
 						attrs))),
 			$mdgriffith$elm_ui$Internal$Model$Unkeyed(children));
 	});
-var $mdgriffith$elm_ui$Internal$Model$PaddingStyle = F5(
-	function (a, b, c, d, e) {
-		return {$: 7, a: a, b: b, c: c, d: d, e: e};
-	});
-var $mdgriffith$elm_ui$Internal$Flag$padding = $mdgriffith$elm_ui$Internal$Flag$flag(2);
-var $mdgriffith$elm_ui$Element$padding = function (x) {
-	var f = x;
-	return A2(
-		$mdgriffith$elm_ui$Internal$Model$StyleClass,
-		$mdgriffith$elm_ui$Internal$Flag$padding,
-		A5(
-			$mdgriffith$elm_ui$Internal$Model$PaddingStyle,
-			'p-' + $elm$core$String$fromInt(x),
-			f,
-			f,
-			f,
-			f));
-};
-var $mdgriffith$elm_ui$Element$Font$size = function (i) {
-	return A2(
-		$mdgriffith$elm_ui$Internal$Model$StyleClass,
-		$mdgriffith$elm_ui$Internal$Flag$fontSize,
-		$mdgriffith$elm_ui$Internal$Model$FontSize(i));
-};
-var $mdgriffith$elm_ui$Internal$Model$SpacingStyle = F3(
-	function (a, b, c) {
-		return {$: 5, a: a, b: b, c: c};
-	});
-var $mdgriffith$elm_ui$Internal$Flag$spacing = $mdgriffith$elm_ui$Internal$Flag$flag(3);
-var $mdgriffith$elm_ui$Internal$Model$spacingName = F2(
-	function (x, y) {
-		return 'spacing-' + ($elm$core$String$fromInt(x) + ('-' + $elm$core$String$fromInt(y)));
-	});
-var $mdgriffith$elm_ui$Element$spacing = function (x) {
-	return A2(
-		$mdgriffith$elm_ui$Internal$Model$StyleClass,
-		$mdgriffith$elm_ui$Internal$Flag$spacing,
-		A3(
-			$mdgriffith$elm_ui$Internal$Model$SpacingStyle,
-			A2($mdgriffith$elm_ui$Internal$Model$spacingName, x, x),
-			x,
-			x));
-};
-var $author$project$Styles$editorColumnStyle = _List_fromArray(
-	[
-		$mdgriffith$elm_ui$Element$spacing(10),
-		$mdgriffith$elm_ui$Element$padding(10),
-		$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$shrink),
-		$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$shrink),
-		$mdgriffith$elm_ui$Element$Font$size(14)
-	]);
 var $mdgriffith$elm_ui$Element$el = F2(
 	function (attrs, child) {
 		return A4(
@@ -11845,62 +11794,266 @@ var $mdgriffith$elm_ui$Internal$Model$Fill = function (a) {
 	return {$: 2, a: a};
 };
 var $mdgriffith$elm_ui$Element$fill = $mdgriffith$elm_ui$Internal$Model$Fill(1);
-var $mdgriffith$elm_ui$Internal$Model$BorderWidth = F5(
+var $mdgriffith$elm_ui$Internal$Model$PaddingStyle = F5(
 	function (a, b, c, d, e) {
-		return {$: 6, a: a, b: b, c: c, d: d, e: e};
+		return {$: 7, a: a, b: b, c: c, d: d, e: e};
 	});
-var $mdgriffith$elm_ui$Element$Border$width = function (v) {
+var $mdgriffith$elm_ui$Internal$Flag$padding = $mdgriffith$elm_ui$Internal$Flag$flag(2);
+var $mdgriffith$elm_ui$Element$padding = function (x) {
+	var f = x;
 	return A2(
 		$mdgriffith$elm_ui$Internal$Model$StyleClass,
-		$mdgriffith$elm_ui$Internal$Flag$borderWidth,
+		$mdgriffith$elm_ui$Internal$Flag$padding,
 		A5(
-			$mdgriffith$elm_ui$Internal$Model$BorderWidth,
-			'b-' + $elm$core$String$fromInt(v),
-			v,
-			v,
-			v,
-			v));
+			$mdgriffith$elm_ui$Internal$Model$PaddingStyle,
+			'p-' + $elm$core$String$fromInt(x),
+			f,
+			f,
+			f,
+			f));
 };
-var $mdgriffith$elm_ui$Element$Border$widthXY = F2(
-	function (x, y) {
-		return A2(
-			$mdgriffith$elm_ui$Internal$Model$StyleClass,
-			$mdgriffith$elm_ui$Internal$Flag$borderWidth,
-			A5(
-				$mdgriffith$elm_ui$Internal$Model$BorderWidth,
-				'b-' + ($elm$core$String$fromInt(x) + ('-' + $elm$core$String$fromInt(y))),
-				y,
-				x,
-				y,
-				x));
+var $mdgriffith$elm_ui$Internal$Model$SpacingStyle = F3(
+	function (a, b, c) {
+		return {$: 5, a: a, b: b, c: c};
 	});
-var $mdgriffith$elm_ui$Element$Border$widthEach = function (_v0) {
-	var bottom = _v0.cx;
-	var top = _v0.dY;
-	var left = _v0.c6;
-	var right = _v0.dm;
-	return (_Utils_eq(top, bottom) && _Utils_eq(left, right)) ? (_Utils_eq(top, right) ? $mdgriffith$elm_ui$Element$Border$width(top) : A2($mdgriffith$elm_ui$Element$Border$widthXY, left, top)) : A2(
+var $mdgriffith$elm_ui$Internal$Flag$spacing = $mdgriffith$elm_ui$Internal$Flag$flag(3);
+var $mdgriffith$elm_ui$Internal$Model$spacingName = F2(
+	function (x, y) {
+		return 'spacing-' + ($elm$core$String$fromInt(x) + ('-' + $elm$core$String$fromInt(y)));
+	});
+var $mdgriffith$elm_ui$Element$spacing = function (x) {
+	return A2(
 		$mdgriffith$elm_ui$Internal$Model$StyleClass,
-		$mdgriffith$elm_ui$Internal$Flag$borderWidth,
-		A5(
-			$mdgriffith$elm_ui$Internal$Model$BorderWidth,
-			'b-' + ($elm$core$String$fromInt(top) + ('-' + ($elm$core$String$fromInt(right) + ('-' + ($elm$core$String$fromInt(bottom) + ('-' + $elm$core$String$fromInt(left))))))),
-			top,
-			right,
-			bottom,
-			left));
+		$mdgriffith$elm_ui$Internal$Flag$spacing,
+		A3(
+			$mdgriffith$elm_ui$Internal$Model$SpacingStyle,
+			A2($mdgriffith$elm_ui$Internal$Model$spacingName, x, x),
+			x,
+			x));
 };
-var $author$project$Styles$textColumnStyle = _List_fromArray(
+var $author$project$Styles$resultStyle = _List_fromArray(
 	[
 		$mdgriffith$elm_ui$Element$Border$color($author$project$Styles$spotifyColors.a1),
-		$mdgriffith$elm_ui$Element$Border$widthEach(
-		{cx: 10, c6: 10, dm: 10, dY: 50}),
 		$mdgriffith$elm_ui$Element$Background$color($author$project$Styles$spotifyColors.az),
 		$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$fill),
 		$mdgriffith$elm_ui$Element$spacing(10),
 		$mdgriffith$elm_ui$Element$padding(10),
 		$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill)
 	]);
+var $mdgriffith$elm_ui$Internal$Model$AsRow = 0;
+var $mdgriffith$elm_ui$Internal$Model$asRow = 0;
+var $mdgriffith$elm_ui$Element$row = F2(
+	function (attrs, children) {
+		return A4(
+			$mdgriffith$elm_ui$Internal$Model$element,
+			$mdgriffith$elm_ui$Internal$Model$asRow,
+			$mdgriffith$elm_ui$Internal$Model$div,
+			A2(
+				$elm$core$List$cons,
+				$mdgriffith$elm_ui$Internal$Model$htmlClass($mdgriffith$elm_ui$Internal$Style$classes.ag + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.H)),
+				A2(
+					$elm$core$List$cons,
+					$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$shrink),
+					A2(
+						$elm$core$List$cons,
+						$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$shrink),
+						attrs))),
+			$mdgriffith$elm_ui$Internal$Model$Unkeyed(children));
+	});
+var $mdgriffith$elm_ui$Element$Font$size = function (i) {
+	return A2(
+		$mdgriffith$elm_ui$Internal$Model$StyleClass,
+		$mdgriffith$elm_ui$Internal$Flag$fontSize,
+		$mdgriffith$elm_ui$Internal$Model$FontSize(i));
+};
+var $author$project$Styles$rowEditorResStyle = _List_fromArray(
+	[
+		$mdgriffith$elm_ui$Element$spacing(10),
+		$mdgriffith$elm_ui$Element$padding(10),
+		$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$fill),
+		$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill),
+		$mdgriffith$elm_ui$Element$Font$size(14)
+	]);
+var $author$project$Styles$rowStyle = _List_fromArray(
+	[
+		$mdgriffith$elm_ui$Element$Background$color($author$project$Styles$spotifyColors.a1),
+		$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$fill),
+		$mdgriffith$elm_ui$Element$spacing(20),
+		$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill),
+		$mdgriffith$elm_ui$Element$padding(20)
+	]);
+var $author$project$Main$SaveHTML = {$: 3};
+var $mdgriffith$elm_ui$Internal$Model$Button = {$: 8};
+var $mdgriffith$elm_ui$Internal$Model$Describe = function (a) {
+	return {$: 2, a: a};
+};
+var $elm$json$Json$Encode$bool = _Json_wrap;
+var $elm$html$Html$Attributes$boolProperty = F2(
+	function (key, bool) {
+		return A2(
+			_VirtualDom_property,
+			key,
+			$elm$json$Json$Encode$bool(bool));
+	});
+var $elm$html$Html$Attributes$disabled = $elm$html$Html$Attributes$boolProperty('disabled');
+var $mdgriffith$elm_ui$Element$Input$enter = 'Enter';
+var $mdgriffith$elm_ui$Internal$Model$NoAttribute = {$: 0};
+var $mdgriffith$elm_ui$Element$Input$hasFocusStyle = function (attr) {
+	if (((attr.$ === 4) && (attr.b.$ === 11)) && (!attr.b.a)) {
+		var _v1 = attr.b;
+		var _v2 = _v1.a;
+		return true;
+	} else {
+		return false;
+	}
+};
+var $mdgriffith$elm_ui$Element$Input$focusDefault = function (attrs) {
+	return A2($elm$core$List$any, $mdgriffith$elm_ui$Element$Input$hasFocusStyle, attrs) ? $mdgriffith$elm_ui$Internal$Model$NoAttribute : $mdgriffith$elm_ui$Internal$Model$htmlClass('focusable');
+};
+var $elm$html$Html$Events$onClick = function (msg) {
+	return A2(
+		$elm$html$Html$Events$on,
+		'click',
+		$elm$json$Json$Decode$succeed(msg));
+};
+var $mdgriffith$elm_ui$Element$Events$onClick = A2($elm$core$Basics$composeL, $mdgriffith$elm_ui$Internal$Model$Attr, $elm$html$Html$Events$onClick);
+var $elm$json$Json$Decode$andThen = _Json_andThen;
+var $elm$json$Json$Decode$fail = _Json_fail;
+var $elm$virtual_dom$VirtualDom$MayPreventDefault = function (a) {
+	return {$: 2, a: a};
+};
+var $elm$html$Html$Events$preventDefaultOn = F2(
+	function (event, decoder) {
+		return A2(
+			$elm$virtual_dom$VirtualDom$on,
+			event,
+			$elm$virtual_dom$VirtualDom$MayPreventDefault(decoder));
+	});
+var $mdgriffith$elm_ui$Element$Input$onKeyLookup = function (lookup) {
+	var decode = function (code) {
+		var _v0 = lookup(code);
+		if (_v0.$ === 1) {
+			return $elm$json$Json$Decode$fail('No key matched');
+		} else {
+			var msg = _v0.a;
+			return $elm$json$Json$Decode$succeed(msg);
+		}
+	};
+	var isKey = A2(
+		$elm$json$Json$Decode$andThen,
+		decode,
+		A2($elm$json$Json$Decode$field, 'key', $elm$json$Json$Decode$string));
+	return $mdgriffith$elm_ui$Internal$Model$Attr(
+		A2(
+			$elm$html$Html$Events$preventDefaultOn,
+			'keydown',
+			A2(
+				$elm$json$Json$Decode$map,
+				function (fired) {
+					return _Utils_Tuple2(fired, true);
+				},
+				isKey)));
+};
+var $mdgriffith$elm_ui$Internal$Model$Class = F2(
+	function (a, b) {
+		return {$: 3, a: a, b: b};
+	});
+var $mdgriffith$elm_ui$Internal$Flag$cursor = $mdgriffith$elm_ui$Internal$Flag$flag(21);
+var $mdgriffith$elm_ui$Element$pointer = A2($mdgriffith$elm_ui$Internal$Model$Class, $mdgriffith$elm_ui$Internal$Flag$cursor, $mdgriffith$elm_ui$Internal$Style$classes.cI);
+var $mdgriffith$elm_ui$Element$Input$space = ' ';
+var $elm$html$Html$Attributes$tabindex = function (n) {
+	return A2(
+		_VirtualDom_attribute,
+		'tabIndex',
+		$elm$core$String$fromInt(n));
+};
+var $mdgriffith$elm_ui$Element$Input$button = F2(
+	function (attrs, _v0) {
+		var onPress = _v0.ay;
+		var label = _v0.ax;
+		return A4(
+			$mdgriffith$elm_ui$Internal$Model$element,
+			$mdgriffith$elm_ui$Internal$Model$asEl,
+			$mdgriffith$elm_ui$Internal$Model$div,
+			A2(
+				$elm$core$List$cons,
+				$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$shrink),
+				A2(
+					$elm$core$List$cons,
+					$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$shrink),
+					A2(
+						$elm$core$List$cons,
+						$mdgriffith$elm_ui$Internal$Model$htmlClass($mdgriffith$elm_ui$Internal$Style$classes.at + (' ' + ($mdgriffith$elm_ui$Internal$Style$classes.H + (' ' + ($mdgriffith$elm_ui$Internal$Style$classes.ds + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.bv)))))),
+						A2(
+							$elm$core$List$cons,
+							$mdgriffith$elm_ui$Element$pointer,
+							A2(
+								$elm$core$List$cons,
+								$mdgriffith$elm_ui$Element$Input$focusDefault(attrs),
+								A2(
+									$elm$core$List$cons,
+									$mdgriffith$elm_ui$Internal$Model$Describe($mdgriffith$elm_ui$Internal$Model$Button),
+									A2(
+										$elm$core$List$cons,
+										$mdgriffith$elm_ui$Internal$Model$Attr(
+											$elm$html$Html$Attributes$tabindex(0)),
+										function () {
+											if (onPress.$ === 1) {
+												return A2(
+													$elm$core$List$cons,
+													$mdgriffith$elm_ui$Internal$Model$Attr(
+														$elm$html$Html$Attributes$disabled(true)),
+													attrs);
+											} else {
+												var msg = onPress.a;
+												return A2(
+													$elm$core$List$cons,
+													$mdgriffith$elm_ui$Element$Events$onClick(msg),
+													A2(
+														$elm$core$List$cons,
+														$mdgriffith$elm_ui$Element$Input$onKeyLookup(
+															function (code) {
+																return _Utils_eq(code, $mdgriffith$elm_ui$Element$Input$enter) ? $elm$core$Maybe$Just(msg) : (_Utils_eq(code, $mdgriffith$elm_ui$Element$Input$space) ? $elm$core$Maybe$Just(msg) : $elm$core$Maybe$Nothing);
+															}),
+														attrs));
+											}
+										}()))))))),
+			$mdgriffith$elm_ui$Internal$Model$Unkeyed(
+				_List_fromArray(
+					[label])));
+	});
+var $mdgriffith$elm_ui$Element$Font$color = function (fontColor) {
+	return A2(
+		$mdgriffith$elm_ui$Internal$Model$StyleClass,
+		$mdgriffith$elm_ui$Internal$Flag$fontColor,
+		A3(
+			$mdgriffith$elm_ui$Internal$Model$Colored,
+			'fc-' + $mdgriffith$elm_ui$Internal$Model$formatColorClass(fontColor),
+			'color',
+			fontColor));
+};
+var $author$project$Styles$buttonstyle = _List_fromArray(
+	[
+		$mdgriffith$elm_ui$Element$Font$color($author$project$Styles$spotifyColors.az),
+		$mdgriffith$elm_ui$Element$Border$color($author$project$Styles$spotifyColors.a1),
+		$mdgriffith$elm_ui$Element$Background$color($author$project$Styles$spotifyColors.a1),
+		$mdgriffith$elm_ui$Element$Font$size(30),
+		$mdgriffith$elm_ui$Element$spacing(10),
+		$mdgriffith$elm_ui$Element$padding(10)
+	]);
+var $mdgriffith$elm_ui$Internal$Model$Text = function (a) {
+	return {$: 2, a: a};
+};
+var $mdgriffith$elm_ui$Element$text = function (content) {
+	return $mdgriffith$elm_ui$Internal$Model$Text(content);
+};
+var $author$project$Main$saveHTMLButton = A2(
+	$mdgriffith$elm_ui$Element$Input$button,
+	$author$project$Styles$buttonstyle,
+	{
+		ax: $mdgriffith$elm_ui$Element$text('💾'),
+		ay: $elm$core$Maybe$Just($author$project$Main$SaveHTML)
+	});
 var $hecrj$html_parser$Html$Parser$Element = F3(
 	function (a, b, c) {
 		return {$: 1, a: a, b: b, c: c};
@@ -15361,6 +15514,69 @@ var $author$project$Main$wrapcss = function (myCssString) {
 				$elm$html$Html$text(myCssString)
 			]));
 };
+var $author$project$Main$viewOneEditor = function (m) {
+	return A2(
+		$mdgriffith$elm_ui$Element$column,
+		$author$project$Styles$rowStyle,
+		_List_fromArray(
+			[
+				$author$project$Main$saveHTMLButton,
+				A2(
+				$mdgriffith$elm_ui$Element$row,
+				$author$project$Styles$rowEditorResStyle,
+				_List_fromArray(
+					[
+						A2(
+						$mdgriffith$elm_ui$Element$el,
+						$author$project$Styles$bigEditorStyle,
+						$mdgriffith$elm_ui$Element$html(
+							A2(
+								$elm$html$Html$div,
+								_List_Nil,
+								_List_fromArray(
+									[
+										$author$project$Main$wrapcss($author$project$Styles$bigCodeMirrorCss),
+										$author$project$Main$codemirrorHTML(m)
+									])))),
+						A2(
+						$mdgriffith$elm_ui$Element$el,
+						$author$project$Styles$resultStyle,
+						$mdgriffith$elm_ui$Element$html(
+							A2(
+								$elm$html$Html$div,
+								_List_Nil,
+								A2(
+									$elm$core$List$cons,
+									$author$project$Main$wrapcss(m.I),
+									$author$project$HtmlHelpers$textHtml(
+										$author$project$HtmlHelpers$removeSpaceandControl(m.J))))))
+					]))
+			]));
+};
+var $author$project$CodeMirror$CSS = 6;
+var $author$project$Main$CSSEditorChanged = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$Main$codemirrorCSS = function (m) {
+	return A5($author$project$CodeMirror$codemirrorHelper, 6, 2, 0, m.I, $author$project$Main$CSSEditorChanged);
+};
+var $author$project$Styles$editorColumnStyle = _List_fromArray(
+	[
+		$mdgriffith$elm_ui$Element$spacing(10),
+		$mdgriffith$elm_ui$Element$padding(10),
+		$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$shrink),
+		$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$shrink),
+		$mdgriffith$elm_ui$Element$Font$size(14)
+	]);
+var $author$project$Styles$textColumnStyle = _List_fromArray(
+	[
+		$mdgriffith$elm_ui$Element$Border$color($author$project$Styles$spotifyColors.a1),
+		$mdgriffith$elm_ui$Element$Background$color($author$project$Styles$spotifyColors.az),
+		$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$fill),
+		$mdgriffith$elm_ui$Element$spacing(10),
+		$mdgriffith$elm_ui$Element$padding(10),
+		$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill)
+	]);
 var $author$project$Main$resultRow = function (m) {
 	return A2(
 		$mdgriffith$elm_ui$Element$column,
@@ -15376,243 +15592,10 @@ var $author$project$Main$resultRow = function (m) {
 						_List_Nil,
 						A2(
 							$elm$core$List$cons,
-							$author$project$Main$wrapcss(m.O),
+							$author$project$Main$wrapcss(m.I),
 							$author$project$HtmlHelpers$textHtml(
-								$author$project$HtmlHelpers$removeSpaceandControl(m.S))))))
+								$author$project$HtmlHelpers$removeSpaceandControl(m.J))))))
 			]));
-};
-var $mdgriffith$elm_ui$Internal$Model$AsRow = 0;
-var $mdgriffith$elm_ui$Internal$Model$asRow = 0;
-var $mdgriffith$elm_ui$Element$row = F2(
-	function (attrs, children) {
-		return A4(
-			$mdgriffith$elm_ui$Internal$Model$element,
-			$mdgriffith$elm_ui$Internal$Model$asRow,
-			$mdgriffith$elm_ui$Internal$Model$div,
-			A2(
-				$elm$core$List$cons,
-				$mdgriffith$elm_ui$Internal$Model$htmlClass($mdgriffith$elm_ui$Internal$Style$classes.ag + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.H)),
-				A2(
-					$elm$core$List$cons,
-					$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$shrink),
-					A2(
-						$elm$core$List$cons,
-						$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$shrink),
-						attrs))),
-			$mdgriffith$elm_ui$Internal$Model$Unkeyed(children));
-	});
-var $author$project$Styles$rowStyle = _List_fromArray(
-	[
-		$mdgriffith$elm_ui$Element$Background$color($author$project$Styles$spotifyColors.a1),
-		$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$fill),
-		$mdgriffith$elm_ui$Element$spacing(20),
-		$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill),
-		$mdgriffith$elm_ui$Element$padding(20)
-	]);
-var $author$project$Main$SaveHTML = {$: 3};
-var $mdgriffith$elm_ui$Internal$Model$Button = {$: 8};
-var $mdgriffith$elm_ui$Internal$Model$Describe = function (a) {
-	return {$: 2, a: a};
-};
-var $elm$json$Json$Encode$bool = _Json_wrap;
-var $elm$html$Html$Attributes$boolProperty = F2(
-	function (key, bool) {
-		return A2(
-			_VirtualDom_property,
-			key,
-			$elm$json$Json$Encode$bool(bool));
-	});
-var $elm$html$Html$Attributes$disabled = $elm$html$Html$Attributes$boolProperty('disabled');
-var $mdgriffith$elm_ui$Element$Input$enter = 'Enter';
-var $mdgriffith$elm_ui$Internal$Model$NoAttribute = {$: 0};
-var $mdgriffith$elm_ui$Element$Input$hasFocusStyle = function (attr) {
-	if (((attr.$ === 4) && (attr.b.$ === 11)) && (!attr.b.a)) {
-		var _v1 = attr.b;
-		var _v2 = _v1.a;
-		return true;
-	} else {
-		return false;
-	}
-};
-var $mdgriffith$elm_ui$Element$Input$focusDefault = function (attrs) {
-	return A2($elm$core$List$any, $mdgriffith$elm_ui$Element$Input$hasFocusStyle, attrs) ? $mdgriffith$elm_ui$Internal$Model$NoAttribute : $mdgriffith$elm_ui$Internal$Model$htmlClass('focusable');
-};
-var $elm$html$Html$Events$onClick = function (msg) {
-	return A2(
-		$elm$html$Html$Events$on,
-		'click',
-		$elm$json$Json$Decode$succeed(msg));
-};
-var $mdgriffith$elm_ui$Element$Events$onClick = A2($elm$core$Basics$composeL, $mdgriffith$elm_ui$Internal$Model$Attr, $elm$html$Html$Events$onClick);
-var $elm$json$Json$Decode$andThen = _Json_andThen;
-var $elm$json$Json$Decode$fail = _Json_fail;
-var $elm$virtual_dom$VirtualDom$MayPreventDefault = function (a) {
-	return {$: 2, a: a};
-};
-var $elm$html$Html$Events$preventDefaultOn = F2(
-	function (event, decoder) {
-		return A2(
-			$elm$virtual_dom$VirtualDom$on,
-			event,
-			$elm$virtual_dom$VirtualDom$MayPreventDefault(decoder));
-	});
-var $mdgriffith$elm_ui$Element$Input$onKeyLookup = function (lookup) {
-	var decode = function (code) {
-		var _v0 = lookup(code);
-		if (_v0.$ === 1) {
-			return $elm$json$Json$Decode$fail('No key matched');
-		} else {
-			var msg = _v0.a;
-			return $elm$json$Json$Decode$succeed(msg);
-		}
-	};
-	var isKey = A2(
-		$elm$json$Json$Decode$andThen,
-		decode,
-		A2($elm$json$Json$Decode$field, 'key', $elm$json$Json$Decode$string));
-	return $mdgriffith$elm_ui$Internal$Model$Attr(
-		A2(
-			$elm$html$Html$Events$preventDefaultOn,
-			'keydown',
-			A2(
-				$elm$json$Json$Decode$map,
-				function (fired) {
-					return _Utils_Tuple2(fired, true);
-				},
-				isKey)));
-};
-var $mdgriffith$elm_ui$Internal$Model$Class = F2(
-	function (a, b) {
-		return {$: 3, a: a, b: b};
-	});
-var $mdgriffith$elm_ui$Internal$Flag$cursor = $mdgriffith$elm_ui$Internal$Flag$flag(21);
-var $mdgriffith$elm_ui$Element$pointer = A2($mdgriffith$elm_ui$Internal$Model$Class, $mdgriffith$elm_ui$Internal$Flag$cursor, $mdgriffith$elm_ui$Internal$Style$classes.cI);
-var $mdgriffith$elm_ui$Element$Input$space = ' ';
-var $elm$html$Html$Attributes$tabindex = function (n) {
-	return A2(
-		_VirtualDom_attribute,
-		'tabIndex',
-		$elm$core$String$fromInt(n));
-};
-var $mdgriffith$elm_ui$Element$Input$button = F2(
-	function (attrs, _v0) {
-		var onPress = _v0.ay;
-		var label = _v0.ax;
-		return A4(
-			$mdgriffith$elm_ui$Internal$Model$element,
-			$mdgriffith$elm_ui$Internal$Model$asEl,
-			$mdgriffith$elm_ui$Internal$Model$div,
-			A2(
-				$elm$core$List$cons,
-				$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$shrink),
-				A2(
-					$elm$core$List$cons,
-					$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$shrink),
-					A2(
-						$elm$core$List$cons,
-						$mdgriffith$elm_ui$Internal$Model$htmlClass($mdgriffith$elm_ui$Internal$Style$classes.at + (' ' + ($mdgriffith$elm_ui$Internal$Style$classes.H + (' ' + ($mdgriffith$elm_ui$Internal$Style$classes.ds + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.bv)))))),
-						A2(
-							$elm$core$List$cons,
-							$mdgriffith$elm_ui$Element$pointer,
-							A2(
-								$elm$core$List$cons,
-								$mdgriffith$elm_ui$Element$Input$focusDefault(attrs),
-								A2(
-									$elm$core$List$cons,
-									$mdgriffith$elm_ui$Internal$Model$Describe($mdgriffith$elm_ui$Internal$Model$Button),
-									A2(
-										$elm$core$List$cons,
-										$mdgriffith$elm_ui$Internal$Model$Attr(
-											$elm$html$Html$Attributes$tabindex(0)),
-										function () {
-											if (onPress.$ === 1) {
-												return A2(
-													$elm$core$List$cons,
-													$mdgriffith$elm_ui$Internal$Model$Attr(
-														$elm$html$Html$Attributes$disabled(true)),
-													attrs);
-											} else {
-												var msg = onPress.a;
-												return A2(
-													$elm$core$List$cons,
-													$mdgriffith$elm_ui$Element$Events$onClick(msg),
-													A2(
-														$elm$core$List$cons,
-														$mdgriffith$elm_ui$Element$Input$onKeyLookup(
-															function (code) {
-																return _Utils_eq(code, $mdgriffith$elm_ui$Element$Input$enter) ? $elm$core$Maybe$Just(msg) : (_Utils_eq(code, $mdgriffith$elm_ui$Element$Input$space) ? $elm$core$Maybe$Just(msg) : $elm$core$Maybe$Nothing);
-															}),
-														attrs));
-											}
-										}()))))))),
-			$mdgriffith$elm_ui$Internal$Model$Unkeyed(
-				_List_fromArray(
-					[label])));
-	});
-var $mdgriffith$elm_ui$Element$Font$color = function (fontColor) {
-	return A2(
-		$mdgriffith$elm_ui$Internal$Model$StyleClass,
-		$mdgriffith$elm_ui$Internal$Flag$fontColor,
-		A3(
-			$mdgriffith$elm_ui$Internal$Model$Colored,
-			'fc-' + $mdgriffith$elm_ui$Internal$Model$formatColorClass(fontColor),
-			'color',
-			fontColor));
-};
-var $author$project$Styles$buttonstyle = _List_fromArray(
-	[
-		$mdgriffith$elm_ui$Element$Font$color($author$project$Styles$spotifyColors.az),
-		$mdgriffith$elm_ui$Element$Border$color($author$project$Styles$spotifyColors.a1),
-		$mdgriffith$elm_ui$Element$Background$color($author$project$Styles$spotifyColors.a1),
-		$mdgriffith$elm_ui$Element$Font$size(30)
-	]);
-var $mdgriffith$elm_ui$Internal$Model$Text = function (a) {
-	return {$: 2, a: a};
-};
-var $mdgriffith$elm_ui$Element$text = function (content) {
-	return $mdgriffith$elm_ui$Internal$Model$Text(content);
-};
-var $author$project$Main$saveHTMLButton = A2(
-	$mdgriffith$elm_ui$Element$Input$button,
-	$author$project$Styles$buttonstyle,
-	{
-		ax: $mdgriffith$elm_ui$Element$text('💾'),
-		ay: $elm$core$Maybe$Just($author$project$Main$SaveHTML)
-	});
-var $author$project$Main$viewOneEditor = function (m) {
-	return A2(
-		$mdgriffith$elm_ui$Element$row,
-		$author$project$Styles$rowStyle,
-		_List_fromArray(
-			[
-				A2(
-				$mdgriffith$elm_ui$Element$column,
-				$author$project$Styles$editorColumnStyle,
-				_List_fromArray(
-					[
-						$author$project$Main$saveHTMLButton,
-						A2(
-						$mdgriffith$elm_ui$Element$el,
-						$author$project$Styles$bigEditorStyle,
-						$mdgriffith$elm_ui$Element$html(
-							A2(
-								$elm$html$Html$div,
-								_List_Nil,
-								_List_fromArray(
-									[
-										$author$project$Main$wrapcss($author$project$Styles$bigCodeMirrorCss),
-										$author$project$Main$codemirrorHTML(m)
-									]))))
-					])),
-				$author$project$Main$resultRow(m)
-			]));
-};
-var $author$project$CodeMirror$CSS = 6;
-var $author$project$Main$CSSEditorChanged = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$Main$codemirrorCSS = function (m) {
-	return A5($author$project$CodeMirror$codemirrorHelper, 6, 2, 0, m.O, $author$project$Main$CSSEditorChanged);
 };
 var $author$project$Main$SaveCSS = {$: 4};
 var $author$project$Main$saveCSSButton = A2(
@@ -15622,7 +15605,7 @@ var $author$project$Main$saveCSSButton = A2(
 		ax: $mdgriffith$elm_ui$Element$text('💾'),
 		ay: $elm$core$Maybe$Just($author$project$Main$SaveCSS)
 	});
-var $author$project$Styles$smallEditorHeight = 429;
+var $author$project$Styles$smallEditorHeight = 370;
 var $author$project$Styles$smallCodeMirrorCss = $author$project$Styles$heightToCodemirrorcss($author$project$Styles$smallEditorHeight);
 var $author$project$Styles$smallEditorstyle = _List_fromArray(
 	[

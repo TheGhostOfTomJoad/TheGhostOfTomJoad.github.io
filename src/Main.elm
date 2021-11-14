@@ -176,26 +176,26 @@ viewTwoEditors m =
 
 
 
-viewOneEditor : { a | htmleditorValue : String, csseditorValue : String } -> Element Msg
-viewOneEditor m =
-    Element.row rowStyle
-        [ Element.column editorColumnStyle
-            [ saveHTMLButton
-            , el bigEditorStyle (html (div [] [ wrapcss bigCodeMirrorCss, codemirrorHTML m ]))
-            ]
-        , resultRow m
-        ]
-
-
 -- viewOneEditor : { a | htmleditorValue : String, csseditorValue : String } -> Element Msg
 -- viewOneEditor m =
---     Element.column rowStyle
---         [ saveHTMLButton
---         , Element.row editorColumnStyle
---             [ el bigEditorStyle (html (div [] [ wrapcss bigCodeMirrorCss, codemirrorHTML m ]))
---             , el resultStyle (html (div [] (wrapcss m.csseditorValue :: textHtml (removeSpaceandControl m.htmleditorValue))))
+--     Element.row rowStyle
+--         [ Element.column editorColumnStyle
+--             [ saveHTMLButton
+--             , el bigEditorStyle (html (div [] [ wrapcss bigCodeMirrorCss, codemirrorHTML m ]))
 --             ]
+--         , resultRow m
 --         ]
+
+
+viewOneEditor : { a | htmleditorValue : String, csseditorValue : String } -> Element Msg
+viewOneEditor m =
+    Element.column rowStyle
+        [ saveHTMLButton
+        , Element.row rowEditorResStyle
+            [ el bigEditorStyle (html (div [] [ wrapcss bigCodeMirrorCss, codemirrorHTML m ]))
+            , el resultStyle (html (div [] (wrapcss m.csseditorValue :: textHtml (removeSpaceandControl m.htmleditorValue))))
+            ]
+        ]
 
 
 viewHelper : a -> (a -> Element msg) -> Html msg
