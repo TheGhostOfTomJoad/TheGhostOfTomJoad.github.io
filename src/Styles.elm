@@ -8,6 +8,7 @@ import Element.Font as Font
 
 pad : number
 pad = 3
+spac : number
 spac = 0
 
 spotifyColors : { background : Color, menubar : Color, topgradient : Color, bottomgradient : Color, primarytext : Color, secondarytext : Color, black : Color }
