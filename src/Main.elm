@@ -18,33 +18,7 @@ import Css.Global exposing (global, class)
 import Css as Css
 import Html.Styled exposing (Html,div,toUnstyled,node)
 import Html.Styled.Attributes exposing (css)
-
-
-
-globalCMcss : Html msg
-globalCMcss = global
-    [ class "CodeMirror"
-        [ Css.height (Css.px 860), Css.width (Css.px 900)
-        ]
-    ]
-
-
-computeAvHeightBig : number -> number
-computeAvHeightBig h = h - 55
-
-computeAvWidthBig : Float -> Float
-computeAvWidthBig w = (w - 100)/2
-
-
-cMcssFunHelper1Both : (a -> Float) -> (b -> Float) -> { c | width : b, height : a } -> List Css.Style
-cMcssFunHelper1Both  computeH computeW size =   [ ( size.width) |> computeW |> Css.px |> Css.width 
-                ,  (size.height) |> computeH |> Css.px |> Css.height
-        ]
-
-
-cMcssFunHelperBoth : (b -> List Css.Style) -> b -> Html msg
-cMcssFunHelperBoth  helper size = global [ class "CodeMirror" (helper size) ]
-
+import ComputeRemSpace exposing (cMcssFunHelperBoth, cMcssFunHelper1Both, computeAvHeightBig,computeAvWidthBig)
 
 cMcssFunBoth : Model -> (Float -> Float) -> (Float -> Float) -> Html msg
 cMcssFunBoth m ch cw = m |> lookForSize |> cMcssFunHelperBoth (cMcssFunHelper1Both ch cw )
@@ -67,6 +41,16 @@ resFunBoth m ch cw = m |> lookForSize |>  (cMcssFunHelper1Both  ch cw) |> css
 
 resFunBig : Model -> Html.Styled.Attribute msg
 resFunBig m =  resFunBoth m computeAvHeightBig computeAvWidthBig
+
+
+globalCMcss : Html msg
+globalCMcss = global
+    [ class "CodeMirror"
+        [ Css.height (Css.px 860), Css.width (Css.px 900)
+        ]
+    ]
+
+
 
 type alias Size = 
     { width : Float
@@ -120,7 +104,7 @@ init : a -> (Model, Cmd Msg)
 init _ =
     ( { htmleditorValue = ""
       , csseditorValue = ""
-      , viewBoth = True
+      , viewBoth = False
       , size = Nothing
       }
     , Dom.getViewport |> Task.perform Initialize

@@ -10850,7 +10850,7 @@ var $author$project$Main$Initialize = function (a) {
 var $elm$browser$Browser$Dom$getViewport = _Browser_withWindow(_Browser_getViewport);
 var $author$project$Main$init = function (_v0) {
 	return _Utils_Tuple2(
-		{csseditorValue: '', htmleditorValue: '', size: $elm$core$Maybe$Nothing, viewBoth: true},
+		{csseditorValue: '', htmleditorValue: '', size: $elm$core$Maybe$Nothing, viewBoth: false},
 		A2($elm$core$Task$perform, $author$project$Main$Initialize, $elm$browser$Browser$Dom$getViewport));
 };
 var $elm$core$Platform$Sub$batch = _Platform_batch;
@@ -16690,7 +16690,7 @@ var $rtfeldman$elm_css$Css$Internal$lengthConverter = F3(
 	});
 var $rtfeldman$elm_css$Css$px = A2($rtfeldman$elm_css$Css$Internal$lengthConverter, $rtfeldman$elm_css$Css$PxUnits, 'px');
 var $rtfeldman$elm_css$Css$width = $rtfeldman$elm_css$Css$prop1('width');
-var $author$project$Main$cMcssFunHelper1Both = F3(
+var $author$project$ComputeRemSpace$cMcssFunHelper1Both = F3(
 	function (computeH, computeW, size) {
 		return _List_fromArray(
 			[
@@ -18380,7 +18380,7 @@ var $rtfeldman$elm_css$Css$Global$global = function (snippets) {
 								$elm$core$List$singleton(
 									$rtfeldman$elm_css$Css$Preprocess$stylesheet(snippets)))))))));
 };
-var $author$project$Main$cMcssFunHelperBoth = F2(
+var $author$project$ComputeRemSpace$cMcssFunHelperBoth = F2(
 	function (helper, size) {
 		return $rtfeldman$elm_css$Css$Global$global(
 			_List_fromArray(
@@ -18400,18 +18400,18 @@ var $author$project$Main$lookForSize = function (m) {
 var $author$project$Main$cMcssFunBoth = F3(
 	function (m, ch, cw) {
 		return A2(
-			$author$project$Main$cMcssFunHelperBoth,
-			A2($author$project$Main$cMcssFunHelper1Both, ch, cw),
+			$author$project$ComputeRemSpace$cMcssFunHelperBoth,
+			A2($author$project$ComputeRemSpace$cMcssFunHelper1Both, ch, cw),
 			$author$project$Main$lookForSize(m));
 	});
-var $author$project$Main$computeAvHeightBig = function (h) {
+var $author$project$ComputeRemSpace$computeAvHeightBig = function (h) {
 	return h - 55;
 };
-var $author$project$Main$computeAvWidthBig = function (w) {
+var $author$project$ComputeRemSpace$computeAvWidthBig = function (w) {
 	return (w - 100) / 2;
 };
 var $author$project$Main$cMcssFunBig = function (m) {
-	return A3($author$project$Main$cMcssFunBoth, m, $author$project$Main$computeAvHeightBig, $author$project$Main$computeAvWidthBig);
+	return A3($author$project$Main$cMcssFunBoth, m, $author$project$ComputeRemSpace$computeAvHeightBig, $author$project$ComputeRemSpace$computeAvWidthBig);
 };
 var $author$project$CodeMirror$HTML = {$: 'HTML'};
 var $author$project$Main$HTMLEditorChanged = function (a) {
