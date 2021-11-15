@@ -3,19 +3,19 @@ module HtmlHelpers exposing (textHtml,removeSpaceandControl)
 import Html.Parser
 import Html.Parser.Util
 import Char.Extra
-import Html
+--import Html
 import String exposing (trim)
+import Html.Styled exposing (Html,fromUnstyled)
 
 type HTMLCode =String
 
 
 
-textHtml : String -> List (Html.Html msg)
+textHtml : String -> List (Html msg)
 textHtml t =
     case Html.Parser.run t of
         Ok nodes ->
-            Html.Parser.Util.toVirtualDom nodes
-
+            (nodes |> Html.Parser.Util.toVirtualDom) |> List.map fromUnstyled
         Err _ ->
             []
 

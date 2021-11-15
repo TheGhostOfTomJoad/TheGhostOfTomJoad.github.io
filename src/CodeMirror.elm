@@ -1,8 +1,10 @@
 module CodeMirror exposing (..)
 
-import Html exposing (Html)
-import Html.Attributes as Attr
-import Html.Events
+
+import Html.Styled exposing (node)
+import Html.Styled.Attributes exposing (attribute)
+import Html.Styled.Events exposing (on)
+
 import Json.Decode as D
 
 type Mode
@@ -75,14 +77,14 @@ keyMapToString m =
             "sublime"
 
 
-codemirrorHelper : Mode -> KeyMap -> Theme -> String -> (String -> value) -> Html value
+codemirrorHelper : Mode -> KeyMap -> Theme -> String -> (String -> value) -> Html.Styled.Html value
 codemirrorHelper mode km theme content constructor =
-    Html.node "code-mirror"
-        [ Attr.attribute "mode" <| modeToString mode
-        , Attr.attribute "keymap" <| keyMapToString km
-        , Attr.attribute "theme" <| themeToString theme
-        , Attr.attribute "editorValue" content
-        , Html.Events.on "editorChanged" <|
+    node "code-mirror"
+        [ attribute "mode" <| modeToString mode
+        , attribute "keymap" <| keyMapToString km
+        , attribute "theme" <| themeToString theme
+        , attribute "editorValue" content
+        , on "editorChanged" <|
             D.map constructor <|
                 D.at [ "target", "editorValue" ] <|
                     D.string
