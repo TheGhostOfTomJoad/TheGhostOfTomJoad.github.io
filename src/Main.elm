@@ -14,23 +14,15 @@ import Styles exposing (..)
 import Time exposing (Weekday(..))
 
 import Task as Task
-import Css.Global exposing (global, class)
-import Css as Css
 import Html.Styled exposing (Html,div,toUnstyled,node)
 import Html.Styled.Attributes exposing (css)
-import ComputeRemSpace exposing (cMcssFunHelperBoth, cMcssFunHelper1Both, computeAvHeightBig,computeAvWidthBig)
+import ComputeRemSpace exposing (cMcssFunHelperBoth, cMcssFunHelper1Both, computeAvHeightBig,computeAvWidthBig,computeAvHeightSmall,computeAvWidthSmall)
 
 cMcssFunBoth : Model -> (Float -> Float) -> (Float -> Float) -> Html msg
 cMcssFunBoth m ch cw = m |> lookForSize |> cMcssFunHelperBoth (cMcssFunHelper1Both ch cw )
 
 cMcssFunBig : Model -> Html msg
 cMcssFunBig m = cMcssFunBoth m computeAvHeightBig computeAvWidthBig
-
-computeAvHeightSmall : Float -> Float
-computeAvHeightSmall h = (h - 100)/2
-
-computeAvWidthSmall: Float -> Float
-computeAvWidthSmall w = (w - 110)/2
 
 
 cMcssFunSmall : Model -> Html msg
@@ -43,12 +35,12 @@ resFunBig : Model -> Html.Styled.Attribute msg
 resFunBig m =  resFunBoth m computeAvHeightBig computeAvWidthBig
 
 
-globalCMcss : Html msg
-globalCMcss = global
-    [ class "CodeMirror"
-        [ Css.height (Css.px 860), Css.width (Css.px 900)
-        ]
-    ]
+-- globalCMcss : Html msg
+-- globalCMcss = global
+--     [ class "CodeMirror"
+--         [ Css.height (Css.px 860), Css.width (Css.px 900)
+--         ]
+--     ]
 
 
 
@@ -207,7 +199,7 @@ resultCol m =
     Element.column
         textColumnStyle
         [ --emptyButton,
-          el [] (html (toUnstyled ((div [] ((wrapcss m.csseditorValue) :: textHtml (removeSpaceandControl m.htmleditorValue))))))
+          el resultStyle (html (toUnstyled ((div [] ((wrapcss m.csseditorValue) :: textHtml (removeSpaceandControl m.htmleditorValue))))))
         ]
 
 
@@ -235,7 +227,7 @@ viewOneEditor m =
             , el resultStyle (html (toUnstyled(div [] (wrapcss m.csseditorValue :: textHtml (removeSpaceandControl m.htmleditorValue)))))
             ]
         ]
-
+-- (css[ Css.backgroundColor (Css.rgb 255 255 255)])
 
 viewHelper : a -> (a -> Element msg) -> Html.Html msg
 viewHelper m f =

@@ -4,6 +4,7 @@ import Element exposing (..)
 import Element.Background as Background
 import Element.Border as Border
 import Element.Font as Font
+--import Css
 
 
 pad : number
@@ -43,6 +44,8 @@ smallEditorstyle : List (Attribute msg)
 smallEditorstyle =
     [ width fill
     , height fill
+  --  ,  Border.color spotifyColors.secondarytext
+    , Background.color spotifyColors.background
        , spacing spac
     , padding pad
      --(px smallEditorHeight)
@@ -57,7 +60,8 @@ bigEditorHeight =
 bigEditorStyle : List (Attribute msg)
 bigEditorStyle =
     [ width fill --fill
-
+    ,Background.color spotifyColors.secondarytext
+    ,Border.color spotifyColors.background
     --, height (px bigEditorHeight)
     , height fill
     , spacing spac
@@ -110,6 +114,8 @@ textstyle =
     , mouseOver []
     , spacing spac
     , padding pad
+    ,Background.color spotifyColors.secondarytext
+    ,Border.color spotifyColors.secondarytext
     ]
 
 
@@ -118,22 +124,24 @@ textColumnStyle =
     [ Border.color spotifyColors.background
 
     --, Border.widthEach { bottom = 10, left = 10, right = 10, top = 50 }
-    , Background.color spotifyColors.primarytext
+    , Background.color spotifyColors.background
     , height fill
     , spacing spac
     , padding pad
     , width fill
+
     ]
 
 
 resultStyle : List (Attr () msg)
 resultStyle =
-    [ Border.color spotifyColors.background
+    [ Border.color spotifyColors.secondarytext,
+    Border.width 4,
 
     -- , Border.widthEach { bottom = 22, left = 10, right = 10, top = 52 }
-    , Background.color spotifyColors.primarytext
+     Background.color spotifyColors.primarytext
     , height fill --fill
-    , spacing spac
+    --, spacing spac
     , padding pad
     , width fill
     ]
@@ -141,14 +149,20 @@ resultStyle =
 
 editorColumnStyle : List (Attribute msg)
 editorColumnStyle =
-    [ spacing spac, padding pad, height fill, width fill, Font.size 14 ]
+    [ spacing spac, padding pad, height fill, width fill, Font.size 14
+    -- ,  Border.color spotifyColors.background
+    -- , Background.color spotifyColors.background 
+    ]
 
 
 rowEditorResStyle : List (Attribute msg)
 rowEditorResStyle =
-    [ spacing spac, padding pad, height fill, width fill, Font.size 14 ]
+    [Background.color spotifyColors.background, Border.color spotifyColors.background, spacing spac, padding pad, height fill, width fill, Font.size 14 ]
 
 
 rowStyle : List (Attr () msg)
 rowStyle =
-    [ Background.color spotifyColors.background, height fill, spacing spac, width fill, padding pad ]
+    [ 
+         Background.color spotifyColors.background
+         , Border.color spotifyColors.background
+         ,height fill, spacing 10, width fill, padding 10 ]

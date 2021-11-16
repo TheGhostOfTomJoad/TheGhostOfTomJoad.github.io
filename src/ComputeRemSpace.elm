@@ -13,7 +13,7 @@ import Html.Styled exposing (Html)
 
 
 computeAvHeightBig : number -> number
-computeAvHeightBig h = h - 55
+computeAvHeightBig h = h - 80
 
 computeAvWidthBig : Float -> Float
 computeAvWidthBig w = (w - 100)/2
@@ -30,3 +30,9 @@ cMcssFunHelperBoth  helper size = global [ class "CodeMirror" (helper size) ]
 
 
 
+
+computeAvHeightSmall : Float -> Float
+computeAvHeightSmall h = (h - 120)/2
+
+computeAvWidthSmall: Float -> Float
+computeAvWidthSmall w = (w - 110)/2

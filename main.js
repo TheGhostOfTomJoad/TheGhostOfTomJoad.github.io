@@ -16600,6 +16600,27 @@ var $author$project$Main$viewHelper = F2(
 				]),
 			f(m));
 	});
+var $mdgriffith$elm_ui$Element$Background$color = function (clr) {
+	return A2(
+		$mdgriffith$elm_ui$Internal$Model$StyleClass,
+		$mdgriffith$elm_ui$Internal$Flag$bgColor,
+		A3(
+			$mdgriffith$elm_ui$Internal$Model$Colored,
+			'bg-' + $mdgriffith$elm_ui$Internal$Model$formatColorClass(clr),
+			'background-color',
+			clr));
+};
+var $mdgriffith$elm_ui$Internal$Flag$borderColor = $mdgriffith$elm_ui$Internal$Flag$flag(28);
+var $mdgriffith$elm_ui$Element$Border$color = function (clr) {
+	return A2(
+		$mdgriffith$elm_ui$Internal$Model$StyleClass,
+		$mdgriffith$elm_ui$Internal$Flag$borderColor,
+		A3(
+			$mdgriffith$elm_ui$Internal$Model$Colored,
+			'bc-' + $mdgriffith$elm_ui$Internal$Model$formatColorClass(clr),
+			'border-color',
+			clr));
+};
 var $mdgriffith$elm_ui$Internal$Model$Fill = function (a) {
 	return {$: 'Fill', a: a};
 };
@@ -16646,6 +16667,8 @@ var $mdgriffith$elm_ui$Element$spacing = function (x) {
 var $author$project$Styles$bigEditorStyle = _List_fromArray(
 	[
 		$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill),
+		$mdgriffith$elm_ui$Element$Background$color($author$project$Styles$spotifyColors.secondarytext),
+		$mdgriffith$elm_ui$Element$Border$color($author$project$Styles$spotifyColors.background),
 		$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$fill),
 		$mdgriffith$elm_ui$Element$spacing($author$project$Styles$spac),
 		$mdgriffith$elm_ui$Element$padding($author$project$Styles$pad)
@@ -18405,7 +18428,7 @@ var $author$project$Main$cMcssFunBoth = F3(
 			$author$project$Main$lookForSize(m));
 	});
 var $author$project$ComputeRemSpace$computeAvHeightBig = function (h) {
-	return h - 55;
+	return h - 80;
 };
 var $author$project$ComputeRemSpace$computeAvWidthBig = function (w) {
 	return (w - 100) / 2;
@@ -18636,33 +18659,28 @@ var $author$project$HtmlHelpers$removeSpaceandControl = function (s) {
 		$author$project$HtmlHelpers$removeDoubleSpace(
 			$author$project$HtmlHelpers$removeControl(s)));
 };
-var $mdgriffith$elm_ui$Element$Background$color = function (clr) {
+var $mdgriffith$elm_ui$Internal$Model$BorderWidth = F5(
+	function (a, b, c, d, e) {
+		return {$: 'BorderWidth', a: a, b: b, c: c, d: d, e: e};
+	});
+var $mdgriffith$elm_ui$Element$Border$width = function (v) {
 	return A2(
 		$mdgriffith$elm_ui$Internal$Model$StyleClass,
-		$mdgriffith$elm_ui$Internal$Flag$bgColor,
-		A3(
-			$mdgriffith$elm_ui$Internal$Model$Colored,
-			'bg-' + $mdgriffith$elm_ui$Internal$Model$formatColorClass(clr),
-			'background-color',
-			clr));
-};
-var $mdgriffith$elm_ui$Internal$Flag$borderColor = $mdgriffith$elm_ui$Internal$Flag$flag(28);
-var $mdgriffith$elm_ui$Element$Border$color = function (clr) {
-	return A2(
-		$mdgriffith$elm_ui$Internal$Model$StyleClass,
-		$mdgriffith$elm_ui$Internal$Flag$borderColor,
-		A3(
-			$mdgriffith$elm_ui$Internal$Model$Colored,
-			'bc-' + $mdgriffith$elm_ui$Internal$Model$formatColorClass(clr),
-			'border-color',
-			clr));
+		$mdgriffith$elm_ui$Internal$Flag$borderWidth,
+		A5(
+			$mdgriffith$elm_ui$Internal$Model$BorderWidth,
+			'b-' + $elm$core$String$fromInt(v),
+			v,
+			v,
+			v,
+			v));
 };
 var $author$project$Styles$resultStyle = _List_fromArray(
 	[
-		$mdgriffith$elm_ui$Element$Border$color($author$project$Styles$spotifyColors.background),
+		$mdgriffith$elm_ui$Element$Border$color($author$project$Styles$spotifyColors.secondarytext),
+		$mdgriffith$elm_ui$Element$Border$width(4),
 		$mdgriffith$elm_ui$Element$Background$color($author$project$Styles$spotifyColors.primarytext),
 		$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$fill),
-		$mdgriffith$elm_ui$Element$spacing($author$project$Styles$spac),
 		$mdgriffith$elm_ui$Element$padding($author$project$Styles$pad),
 		$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill)
 	]);
@@ -18694,6 +18712,8 @@ var $mdgriffith$elm_ui$Element$Font$size = function (i) {
 };
 var $author$project$Styles$rowEditorResStyle = _List_fromArray(
 	[
+		$mdgriffith$elm_ui$Element$Background$color($author$project$Styles$spotifyColors.background),
+		$mdgriffith$elm_ui$Element$Border$color($author$project$Styles$spotifyColors.background),
 		$mdgriffith$elm_ui$Element$spacing($author$project$Styles$spac),
 		$mdgriffith$elm_ui$Element$padding($author$project$Styles$pad),
 		$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$fill),
@@ -18703,10 +18723,11 @@ var $author$project$Styles$rowEditorResStyle = _List_fromArray(
 var $author$project$Styles$rowStyle = _List_fromArray(
 	[
 		$mdgriffith$elm_ui$Element$Background$color($author$project$Styles$spotifyColors.background),
+		$mdgriffith$elm_ui$Element$Border$color($author$project$Styles$spotifyColors.background),
 		$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$fill),
-		$mdgriffith$elm_ui$Element$spacing($author$project$Styles$spac),
+		$mdgriffith$elm_ui$Element$spacing(10),
 		$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill),
-		$mdgriffith$elm_ui$Element$padding($author$project$Styles$pad)
+		$mdgriffith$elm_ui$Element$padding(10)
 	]);
 var $author$project$Main$SaveHTML = {$: 'SaveHTML'};
 var $mdgriffith$elm_ui$Internal$Model$Button = {$: 'Button'};
@@ -22914,14 +22935,14 @@ var $author$project$Main$viewOneEditor = function (m) {
 					]))
 			]));
 };
-var $author$project$Main$computeAvHeightSmall = function (h) {
-	return (h - 100) / 2;
+var $author$project$ComputeRemSpace$computeAvHeightSmall = function (h) {
+	return (h - 120) / 2;
 };
-var $author$project$Main$computeAvWidthSmall = function (w) {
+var $author$project$ComputeRemSpace$computeAvWidthSmall = function (w) {
 	return (w - 110) / 2;
 };
 var $author$project$Main$cMcssFunSmall = function (m) {
-	return A3($author$project$Main$cMcssFunBoth, m, $author$project$Main$computeAvHeightSmall, $author$project$Main$computeAvWidthSmall);
+	return A3($author$project$Main$cMcssFunBoth, m, $author$project$ComputeRemSpace$computeAvHeightSmall, $author$project$ComputeRemSpace$computeAvWidthSmall);
 };
 var $author$project$CodeMirror$CSS = {$: 'CSS'};
 var $author$project$Main$CSSEditorChanged = function (a) {
@@ -22941,7 +22962,7 @@ var $author$project$Styles$editorColumnStyle = _List_fromArray(
 var $author$project$Styles$textColumnStyle = _List_fromArray(
 	[
 		$mdgriffith$elm_ui$Element$Border$color($author$project$Styles$spotifyColors.background),
-		$mdgriffith$elm_ui$Element$Background$color($author$project$Styles$spotifyColors.primarytext),
+		$mdgriffith$elm_ui$Element$Background$color($author$project$Styles$spotifyColors.background),
 		$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$fill),
 		$mdgriffith$elm_ui$Element$spacing($author$project$Styles$spac),
 		$mdgriffith$elm_ui$Element$padding($author$project$Styles$pad),
@@ -22955,7 +22976,7 @@ var $author$project$Main$resultCol = function (m) {
 			[
 				A2(
 				$mdgriffith$elm_ui$Element$el,
-				_List_Nil,
+				$author$project$Styles$resultStyle,
 				$mdgriffith$elm_ui$Element$html(
 					$rtfeldman$elm_css$Html$Styled$toUnstyled(
 						A2(
@@ -22980,6 +23001,7 @@ var $author$project$Styles$smallEditorstyle = _List_fromArray(
 	[
 		$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill),
 		$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$fill),
+		$mdgriffith$elm_ui$Element$Background$color($author$project$Styles$spotifyColors.background),
 		$mdgriffith$elm_ui$Element$spacing($author$project$Styles$spac),
 		$mdgriffith$elm_ui$Element$padding($author$project$Styles$pad)
 	]);
