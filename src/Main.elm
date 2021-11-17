@@ -2,6 +2,7 @@ module Main exposing (..)
 
 
 import Browser.Dom as Dom
+import Browser.Events as E
 import Browser
 import CodeMirror exposing (KeyMap(..), Mode(..), Theme(..), codemirrorHelper)
 import Element exposing (..)
@@ -111,6 +112,7 @@ type Msg
     | SaveCSS
     | ChangeView
     | Initialize Dom.Viewport
+    | ChangeViewSize Float Float
 
 
 
@@ -151,14 +153,21 @@ update msg m =
         SaveCSS ->
             ( m, Download.string "my_code.css" "text/css" m.csseditorValue )
 
-        Initialize viewport -> 
-            let newWindow  =   {width = viewport.viewport.width, height = viewport.viewport.height}  in
-            ( {m |size  = Just newWindow }, Cmd.none)
+        Initialize viewport -> computeNewWindow viewport.viewport.width viewport.viewport.height m
+            -- let newWindow  =   {width = viewport.viewport.width, height = viewport.viewport.height}  in
+            -- ( {m |size  = Just newWindow }, Cmd.none)
             --(m,Cmd.none)
+        ChangeViewSize w h -> computeNewWindow  w h m
+        
         ChangeView ->
             ( { m | viewBoth = not m.viewBoth }, Cmd.none )
 
 
+
+
+computeNewWindow : Float -> Float -> Model -> (Model , Cmd msg)
+computeNewWindow w h m = let newWindow  =   {width = w, height = h}  in
+            ( {m |size  = Just newWindow }, Cmd.none)
 
 -- Upload ->
 --     ( m, Select.file [ "text/plain", "text/html" ] HTMLSelected )
@@ -262,9 +271,11 @@ viewOnlyEditor m =
     codemirrorHTML m.editorValue
 
 
-subscriptions : Model -> Sub Msg
+
+--subscriptions : Model -> Sub Msg
+subscriptions : a -> Sub Msg
 subscriptions _ =
-    Sub.none
+    E.onResize (\w h -> ChangeViewSize (toFloat w) (toFloat h))
 
 
 htmlExample : String
