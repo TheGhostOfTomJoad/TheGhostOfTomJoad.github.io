@@ -18234,7 +18234,7 @@ var $author$project$Main$viewTwoEditors = function (m) {
 									_List_fromArray(
 										[
 											$author$project$Main$cMcssFunSmall(m),
-											$author$project$Main$codemirrorCSS(m)
+											$author$project$Main$codemirrorHTML(m)
 										]))))),
 						$author$project$Main$saveCSSButton,
 						A2(
