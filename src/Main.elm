@@ -101,7 +101,7 @@ init : a -> (Model, Cmd Msg)
 init _ =
     ( { htmleditorValue = " <!--Write your HTML Code in this text field-->"
       , csseditorValue = "/* Write your CSS Code in this text field */"
-      , viewBoth = True
+      , viewBoth = False
       , size = Nothing
       }
     , Dom.getViewport |> Task.perform Initialize

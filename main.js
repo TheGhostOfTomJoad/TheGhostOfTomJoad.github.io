@@ -5489,7 +5489,7 @@ var $author$project$Main$Initialize = function (a) {
 var $elm$browser$Browser$Dom$getViewport = _Browser_withWindow(_Browser_getViewport);
 var $author$project$Main$init = function (_v0) {
 	return _Utils_Tuple2(
-		{V: '/* Write your CSS Code in this text field */', Z: ' <!--Write your HTML Code in this text field-->', bv: $elm$core$Maybe$Nothing, a8: true},
+		{V: '/* Write your CSS Code in this text field */', Z: ' <!--Write your HTML Code in this text field-->', bv: $elm$core$Maybe$Nothing, a8: false},
 		A2($elm$core$Task$perform, $author$project$Main$Initialize, $elm$browser$Browser$Dom$getViewport));
 };
 var $author$project$Main$ChangeViewSize = F2(
