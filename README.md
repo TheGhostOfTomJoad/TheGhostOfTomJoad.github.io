@@ -10,7 +10,7 @@ Write HTML-Code in the first editor and CSS in the second editor.
 <li>
 Implement the Possibility to switch between HTML and HTML/CSS mode.
 Its hardcoded now. You can change the 
-viewBoth variable in the init function anc compile again to use another mode.
+viewBoth variable in the init function and compile again to use another mode.
 </li> 
 <li> Cleanup Code  </li> 
 </ul>
