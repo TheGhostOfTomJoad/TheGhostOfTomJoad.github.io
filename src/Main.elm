@@ -16,7 +16,7 @@ import Time exposing (Weekday(..))
 
 import Task as Task
 import Html.Styled exposing (Html,div,toUnstyled,node)
-import Html.Styled.Attributes exposing (css)
+--import Html.Styled.Attributes exposing (css)
 import ComputeRemSpace exposing (cMcssFunHelperBoth, cMcssFunHelper1Both, computeAvHeightBig,computeAvWidthBig,computeAvHeightSmall,computeAvWidthSmall)
 
 cMcssFunBoth : Model -> (Float -> Float) -> (Float -> Float) -> Html msg
@@ -99,9 +99,9 @@ type alias Model =
 --init : D.Value -> ( Model, Cmd Msg )
 init : a -> (Model, Cmd Msg)
 init _ =
-    ( { htmleditorValue = ""
-      , csseditorValue = ""
-      , viewBoth = False
+    ( { htmleditorValue = " <!--Write your HTML Code in this text field-->"
+      , csseditorValue = "/* Write your CSS Code in this text field */"
+      , viewBoth = True
       , size = Nothing
       }
     , Dom.getViewport |> Task.perform Initialize
