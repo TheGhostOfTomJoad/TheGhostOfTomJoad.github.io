@@ -166,3 +166,7 @@ rowStyle =
          Background.color spotifyColors.background
          , Border.color spotifyColors.background
          ,height fill, spacing 10, width fill, padding 10 ]
+
+
+hideEditor : List (Attribute msg)
+hideEditor = [width (px 0), height (px 0), spacing 0, padding 0,Border.width 0]

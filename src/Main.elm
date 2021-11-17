@@ -29,11 +29,15 @@ cMcssFunBig m = cMcssFunBoth m computeAvHeightBig computeAvWidthBig
 cMcssFunSmall : Model -> Html msg
 cMcssFunSmall m = cMcssFunBoth m computeAvHeightSmall computeAvWidthSmall
 
+cMcssFunHide : Model -> Html msg
+cMcssFunHide m = cMcssFunBoth m (\_-> 0) (\_-> 0)
+
 resFunBoth : Model -> (Float -> Float) -> (Float -> Float) -> Html.Styled.Attribute msg
 resFunBoth m ch cw = m |> lookForSize |>  (cMcssFunHelper1Both  ch cw) |> css
 
 resFunBig : Model -> Html.Styled.Attribute msg
 resFunBig m =  resFunBoth m computeAvHeightBig computeAvWidthBig
+
 
 
 -- globalCMcss : Html msg
@@ -234,6 +238,7 @@ viewOneEditor m =
         , Element.row rowEditorResStyle
             [ el bigEditorStyle (html (toUnstyled (div [] [cMcssFunBig m, codemirrorHTML m ])))
             , el resultStyle (html (toUnstyled(div [] (wrapcss m.csseditorValue :: textHtml (removeSpaceandControl m.htmleditorValue)))))
+    --        , el hideEditor (html (toUnstyled(div [] [ cMcssFunHide m, codemirrorCSS m ])))
             ]
         ]
 -- (css[ Css.backgroundColor (Css.rgb 255 255 255)])
