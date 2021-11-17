@@ -80,4 +80,3 @@ customElements.define('code-mirror',
     }
 
   })
-
