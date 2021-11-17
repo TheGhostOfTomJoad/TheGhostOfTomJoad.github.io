@@ -18150,14 +18150,6 @@ var $author$project$ComputeRemSpace$computeAvWidthSmall = function (w) {
 var $author$project$Main$cMcssFunSmall = function (m) {
 	return A3($author$project$Main$cMcssFunBoth, m, $author$project$ComputeRemSpace$computeAvHeightSmall, $author$project$ComputeRemSpace$computeAvWidthSmall);
 };
-var $author$project$Main$ChangeView = {$: 5};
-var $author$project$Main$changeViewButton = A2(
-	$mdgriffith$elm_ui$Element$Input$button,
-	$author$project$Styles$buttonstyle,
-	{
-		bO: $mdgriffith$elm_ui$Element$text('🎨'),
-		bT: $elm$core$Maybe$Just($author$project$Main$ChangeView)
-	});
 var $author$project$CodeMirror$CSS = 6;
 var $author$project$Main$CSSEditorChanged = function (a) {
 	return {$: 2, a: a};
@@ -18231,7 +18223,6 @@ var $author$project$Main$viewTwoEditors = function (m) {
 				_List_fromArray(
 					[
 						$author$project$Main$saveHTMLButton,
-						$author$project$Main$changeViewButton,
 						A2(
 						$mdgriffith$elm_ui$Element$el,
 						$author$project$Styles$smallEditorstyle,
