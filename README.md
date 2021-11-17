@@ -10,12 +10,16 @@ Write HTML-Code in the first editor and CSS in the second editor.
 <li>
 Implement the Possibility to switch between HTML and HTML/CSS mode.
 Its hardcoded now. You can change the 
-viewBoth variable in the init function to use another mode.
-<li>
-<li> Cleanup Code <li>
-<ul>
+viewBoth variable in the init function anc compile again to use another mode.
+</li> 
+<li> Cleanup Code  </li> 
+</ul>
 
 ## Try it
+
+<a href ="https://theghostoftomjoad.github.io/"> https://theghostoftomjoad.github.io/ </a>
+
+## Build it
 
 ```shell
 npm install
