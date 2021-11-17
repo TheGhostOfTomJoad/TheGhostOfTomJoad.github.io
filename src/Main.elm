@@ -221,7 +221,7 @@ viewTwoEditors : Model -> Element Msg
 viewTwoEditors m =
     Element.row rowStyle
         [ Element.column editorColumnStyle
-            [ saveHTMLButton --saveAndChangeButton
+            [ saveHTMLButton --saveAndChangeButton, changeViewButton
             , el smallEditorstyle (html (toUnstyled(div [] [ cMcssFunSmall m, codemirrorHTML m ]))) --el smallEditorstyle (html (codemirrorHTML m))
             , saveCSSButton
             , el smallEditorstyle (html (toUnstyled(div [] [ cMcssFunSmall m, codemirrorCSS m ])))
