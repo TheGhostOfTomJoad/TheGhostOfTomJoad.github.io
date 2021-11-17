@@ -17,8 +17,11 @@
 
   <!--  <link rel="stylesheet" href="https://raw.githubusercontent.com/htmlhint/brackets-htmlhint/master/htmlhint/htmlhint.js"> -->
   <!--<script src="https://raw.githubusercontent.com/htmlhint/brackets-htmlhint/master/htmlhint/htmlhint.js"></script> -->
-  <script src="./myhtmlhint.js"></script>
-  <script> src = "./mycsslint.js" </script>
+
+  <script src="./myhtmlhint.js"></script> 
+  <script src="https://raw.githubusercontent.com/CSSLint/csslint/master/dist/csslint.js"></script>
+  <script> src = "./mycsslint.js"</script>
+  
   <!-- <link rel="stylesheet" href="node_modules/codemirror/theme/tomorrow-night-eighties.css"> -->
 </head>
 
@@ -26,20 +29,18 @@
 
 <body>
   <!-- The Codemirror imports we need -->
-  <script type="module" src="./myhtmlhint.js"></script>
-  <script type="module" src="./mycsslint.js"></script>
+  <!-- <script type="module" src="./myhtmlhint.js"></script> -->
+  <!-- <script type="module" src="./mycsslint.js"></script> -->
   <script type="module" src="./codemirror.js"></script>
   <script src="./main.js"></script>
 
   <div id="elm"></div>
   <script>
-    var flags = {windowWidth: window.innerWidth,
-      windowHeight: window.innerHeight}
+
 
     var app = Elm.Main.init({
       node: document.getElementById('elm'),
-      flags :  null
-      // <!-- flags: (flags.windowWidth), -->
+      flags: null
 
     });
   </script>
