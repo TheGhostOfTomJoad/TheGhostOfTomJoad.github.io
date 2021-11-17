@@ -32,11 +32,11 @@ cMcssFunSmall m = cMcssFunBoth m computeAvHeightSmall computeAvWidthSmall
 cMcssFunHide : Model -> Html msg
 cMcssFunHide m = cMcssFunBoth m (\_-> 0) (\_-> 0)
 
-resFunBoth : Model -> (Float -> Float) -> (Float -> Float) -> Html.Styled.Attribute msg
-resFunBoth m ch cw = m |> lookForSize |>  (cMcssFunHelper1Both  ch cw) |> css
+-- resFunBoth : Model -> (Float -> Float) -> (Float -> Float) -> Html.Styled.Attribute msg
+-- resFunBoth m ch cw = m |> lookForSize |>  (cMcssFunHelper1Both  ch cw) |> css
 
-resFunBig : Model -> Html.Styled.Attribute msg
-resFunBig m =  resFunBoth m computeAvHeightBig computeAvWidthBig
+-- resFunBig : Model -> Html.Styled.Attribute msg
+-- resFunBig m =  resFunBoth m computeAvHeightBig computeAvWidthBig
 
 
 
