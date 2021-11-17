@@ -234,7 +234,7 @@ viewTwoEditors m =
 viewOneEditor : Model-> Element Msg
 viewOneEditor m =
     Element.column rowStyle
-        [ saveHTMLButton
+        [ saveHTMLButton 
         , Element.row rowEditorResStyle
             [ el bigEditorStyle (html (toUnstyled (div [] [cMcssFunBig m, codemirrorHTML m ])))
             , el resultStyle (html (toUnstyled(div [] (wrapcss m.csseditorValue :: textHtml (removeSpaceandControl m.htmleditorValue)))))
