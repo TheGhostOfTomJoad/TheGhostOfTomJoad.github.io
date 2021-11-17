@@ -5,9 +5,9 @@ import './node_modules/codemirror/addon/lint/lint.js'
 import './node_modules/codemirror/addon/hint/show-hint.js'
 import './node_modules/codemirror/addon/hint/html-hint.js'
 import './node_modules/codemirror/addon/lint/html-lint.js'
-
+// import './node_modules/codemirror/addon/lint/css-lint.js'
+import './custom_css-lint.js'
 import './node_modules/codemirror/addon/hint/css-hint.js'
-import './node_modules/codemirror/addon/lint/css-lint.js'
 
 import './node_modules/codemirror/src/display/gutters.js'
 
