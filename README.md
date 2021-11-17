@@ -20,6 +20,7 @@ viewBoth variable in the init function and compile again to use another mode.
 <a href ="https://theghostoftomjoad.github.io/"> https://theghostoftomjoad.github.io/ </a>
 
 ## Build it
+Only the .elm files, package.json, index.html, myhtmlhint.js, mycsshint.js and, codemirror.css and custom_cssl-lint.js are necessary to build.
 
 ```shell
 npm install
