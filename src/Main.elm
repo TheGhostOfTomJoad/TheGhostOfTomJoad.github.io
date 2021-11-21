@@ -134,8 +134,8 @@ wrapcss : String -> Html msg
 wrapcss myCssString =
     node "style" [] [ Html.Styled.text myCssString ]
 
-wrapCss2 : String -> String
-wrapCss2 css = String.concat ["<style> ",css, " </style>"   ] 
+-- wrapCss2 : String -> String
+-- wrapCss2 css = String.concat ["<style> ",css, " </style>"   ] 
 type alias Model =
     { htmleditorValue : String
     , csseditorValue : String
