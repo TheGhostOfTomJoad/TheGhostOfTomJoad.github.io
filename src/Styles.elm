@@ -66,6 +66,7 @@ bigEditorStyle =
     , height fill
     , spacing spac
     , padding pad
+   -- , Border.width 4
     ]
 
 
@@ -106,17 +107,17 @@ bigEditorStyle =
 --".CodeMirror {height: auto;}" --{ min-height: 100 vh ; height : 100 vh,  flex:1}" -- --
 
 
-textstyle : List (Attribute msg)
-textstyle =
-    [ height shrink --fill --(px 803)
-    , width shrink -- fill
-    , mouseDown []
-    , mouseOver []
-    , spacing spac
-    , padding pad
-    ,Background.color spotifyColors.secondarytext
-    ,Border.color spotifyColors.secondarytext
-    ]
+-- textstyle : List (Attribute msg)
+-- textstyle =
+--     [ height shrink --fill --(px 803)
+--     , width shrink -- fill
+--     , mouseDown []
+--     , mouseOver []
+--     , spacing spac
+--     , padding pad
+--     ,Background.color spotifyColors.secondarytext
+--     ,Border.color spotifyColors.secondarytext
+--     ]
 
 
 textColumnStyle : List (Attr () msg)

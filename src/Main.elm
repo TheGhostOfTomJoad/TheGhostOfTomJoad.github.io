@@ -6,6 +6,7 @@ module Main exposing (..)
 import Browser
 import Browser.Dom as Dom
 import Browser.Events as E
+import HtmlHelpers exposing (textHtml,removeSpaceandControl)
 import CodeMirror exposing (KeyMap(..), Mode(..), Theme(..), codemirrorHelper)
 import ComputeRemSpace exposing (computeAvHeightBig, computeAvHeightSmall, computeAvWidthBig, computeAvWidthSmall)
 import Css
@@ -15,9 +16,8 @@ import Element.Input exposing (button)
 import File.Download as Download
 import Html
 import Html.Styled exposing (Html, div, node, toUnstyled,fromUnstyled,iframe)
-import Html.Styled.Attributes exposing (css,srcdoc)
+import Html.Styled.Attributes exposing (css,srcdoc,style)
 
-import HtmlHelpers exposing (removeSpaceandControl, textHtml)
 import Json.Decode as D
 import Styles exposing (..)
 import Task as Task
@@ -61,6 +61,8 @@ cmCssHelper1  h w =
 
 cmCss : Model -> Html msg
 cmCss m = global [ class "CodeMirror" (cmCss1 m)]
+
+
 cmCss1 : Model -> List Css.Style
 cmCss1 m =
     let
@@ -76,7 +78,25 @@ cmCss1 m =
     else
         cmCssHelper1 (computeAvHeightBig s.height) (computeAvWidthBig s.width)
 
+cmCss2 : Model -> List Css.Style
+cmCss2 m =
+    let
+        s =
+            lookForSize m
 
+        b =
+            m.viewBoth
+    in
+    if b then
+        cmCssHelper1 ( s.height - 70) ((s.width - 90)/2)
+
+    else
+        cmCssHelper1 ( s.height - 95) ((s.width - 90)/2)
+
+
+
+otherCss : Html msg
+otherCss = global [ class "CodeMirror" [Css.height (Css.vh 90.5)]]
 
 -- resFunBoth : Model -> (Float -> Float) -> (Float -> Float) -> Html.Styled.Attribute msg
 -- resFunBoth m ch cw = m |> lookForSize |>  (cMcssFunHelper1Both  ch cw) |> css
@@ -134,8 +154,8 @@ wrapcss : String -> Html msg
 wrapcss myCssString =
     node "style" [] [ Html.Styled.text myCssString ]
 
--- wrapCss2 : String -> String
--- wrapCss2 css = String.concat ["<style> ",css, " </style>"   ] 
+wrapCss2 : String -> String
+wrapCss2 css = String.concat ["<style> ",css, " </style>"   ] 
 type alias Model =
     { htmleditorValue : String
     , csseditorValue : String
@@ -154,7 +174,7 @@ init : a -> ( Model, Cmd Msg )
 init _ =
     ( { htmleditorValue = " <!--Write your HTML Code in this text field-->"
       , csseditorValue = "/* Write your CSS Code in this text field */"
-      , viewBoth = False
+      , viewBoth = True
       , size = Nothing
       }
     , Dom.getViewport |> Task.perform Initialize
@@ -263,12 +283,14 @@ saveAndChangeButton =
     Element.row [ spacing 750 ] [ saveHTMLButton, changeViewButton ]
 
 
-resultCol : { a | csseditorValue : String, htmleditorValue : String } -> Element Msg
+--resultCol : { a | csseditorValue : String, htmleditorValue : String } -> Element Msg
+resultCol : { htmleditorValue : String, csseditorValue : String, viewBoth : Bool, size : Maybe Size } -> Element msg
 resultCol m =
     Element.column
         textColumnStyle
         [ --emptyButton,
-          el resultStyle (html (toUnstyled (div [] (wrapcss m.csseditorValue :: textHtml (removeSpaceandControl m.htmleditorValue)))))
+          el resultStyle (html (toUnstyled(div [] [renderCode m] )))--el resultStyle  (html (toUnstyled (renderCode m)))  --
+        --el resultStyle (html (toUnstyled (div [] (wrapcss m.csseditorValue :: textHtml (removeSpaceandControl m.htmleditorValue)))))
         ]
 
 
@@ -277,9 +299,12 @@ resultCol m =
 --renderCode : String -> String -> Html msg
 --renderCode html css = iframe [srcdoc (String.concat [html, wrapCss2 css])] []
 
-
+  --css [Css.height (Css.pct 100),Css.width (Css.pct 100)]
+--renderCode : { a | htmleditorValue : String } -> Html msg
+--renderCode m  = iframe [srcdoc m.htmleditorValue, style "border" "none", css [Css.height (Css.vh 90.5),Css.width (Css.pct 100)]] []
 renderCode : { htmleditorValue : String, csseditorValue : String, viewBoth : Bool, size : Maybe Size } -> Html msg
-renderCode m  = iframe [srcdoc m.htmleditorValue, css (cmCss1 m)] []
+renderCode m  = iframe [srcdoc (String.concat [wrapCss2 m.csseditorValue, " ", m.htmleditorValue]), style "border" "none", css (cmCss2 m)] []
+
 
 viewTwoEditors : Model -> Element Msg
 viewTwoEditors m =
@@ -300,8 +325,8 @@ viewOneEditor m =
         [ saveHTMLButton
         , Element.row rowEditorResStyle
             [ el bigEditorStyle (html (toUnstyled ( codemirrorHTML m )))
-            , el resultStyle (html (toUnstyled (div [] (wrapcss m.csseditorValue :: textHtml (removeSpaceandControl m.htmleditorValue)))))
-      --      , el resultStyle (html (toUnstyled(div [] [wrapcss m.csseditorValue, renderCode m] )))
+         --   , el resultStyle (html (toUnstyled (div [] (wrapcss m.csseditorValue :: textHtml (removeSpaceandControl m.htmleditorValue)))))
+            , el resultStyle (html (toUnstyled(div [] [wrapcss m.csseditorValue, renderCode m] )))
             --        , el hideEditor (html (toUnstyled(div [] [ cMcssFunHide m, codemirrorCSS m ])))
             ]
         ]
@@ -327,7 +352,7 @@ viewHelper m f =
 
 
 view : Model -> Html.Html Msg
-view m = toUnstyled (div [css [Css.height (Css.pct 100.0)]] [ (cmCss m),
+view m = toUnstyled (div [css [Css.height (Css.pct 100.0)]] [(cmCss m), --otherCss,--
     fromUnstyled(if m.viewBoth then
         viewHelper m viewTwoEditors
         --viewTwoEditors
