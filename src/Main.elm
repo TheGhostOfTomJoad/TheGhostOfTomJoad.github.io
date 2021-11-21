@@ -1,45 +1,79 @@
 module Main exposing (..)
 
+-- exposing ( Html,div)
+--import Html.Styled.Attributes exposing (css)
 
+import Browser
 import Browser.Dom as Dom
 import Browser.Events as E
-import Browser
 import CodeMirror exposing (KeyMap(..), Mode(..), Theme(..), codemirrorHelper)
+import ComputeRemSpace exposing (computeAvHeightBig, computeAvHeightSmall, computeAvWidthBig, computeAvWidthSmall)
+import Css
+import Css.Global exposing (class, global)
 import Element exposing (..)
 import Element.Input exposing (button)
 import File.Download as Download
-import Html  -- exposing ( Html,div)
+import Html
+import Html.Styled exposing (Html, div, node, toUnstyled,fromUnstyled)
+import Html.Styled.Attributes exposing (css)
+
 import HtmlHelpers exposing (removeSpaceandControl, textHtml)
 import Json.Decode as D
 import Styles exposing (..)
-import Time exposing (Weekday(..))
-
 import Task as Task
-import Html.Styled exposing (Html,div,toUnstyled,node)
---import Html.Styled.Attributes exposing (css)
-import ComputeRemSpace exposing (cMcssFunHelperBoth, cMcssFunHelper1Both, computeAvHeightBig,computeAvWidthBig,computeAvHeightSmall,computeAvWidthSmall)
-
-cMcssFunBoth : Model -> (Float -> Float) -> (Float -> Float) -> Html msg
-cMcssFunBoth m ch cw = m |> lookForSize |> cMcssFunHelperBoth (cMcssFunHelper1Both ch cw )
-
-cMcssFunBig : Model -> Html msg
-cMcssFunBig m = cMcssFunBoth m computeAvHeightBig computeAvWidthBig
+--import Time exposing (Weekday(..))
 
 
-cMcssFunSmall : Model -> Html msg
-cMcssFunSmall m = cMcssFunBoth m computeAvHeightSmall computeAvWidthSmall
+-- cMcssFunBoth : Model -> (Float -> Float) -> (Float -> Float) -> Html msg
+-- cMcssFunBoth m ch cw =
+--     m |> lookForSize |> cMcssFunHelperBoth (cMcssFunHelper1Both ch cw)
 
-cMcssFunHide : Model -> Html msg
-cMcssFunHide m = cMcssFunBoth m (\_-> 0) (\_-> 0)
+
+-- cMcssFunBig : Model -> Html msg
+-- cMcssFunBig m =
+--     cMcssFunBoth m computeAvHeightBig computeAvWidthBig
+
+
+-- cMcssFunSmall : Model -> Html msg
+-- cMcssFunSmall m =
+--     cMcssFunBoth m computeAvHeightSmall computeAvWidthSmall
+
+
+-- cMcssFunHide : Model -> Html msg
+-- cMcssFunHide m =
+--     cMcssFunBoth m (\_ -> 0) (\_ -> 0)
+
+
+
+--h1 w h = global [ class "CodeMirror" [Css.height (Css.px h), Css.width (Css.px w)] ]
+
+
+cmCssHelper : Float -> Float -> Html msg
+cmCssHelper  h w =
+    global [ class "CodeMirror" [ Css.height (Css.px h), Css.width (Css.px w) ] ]
+
+
+cmCss : Model -> Html msg
+cmCss m =
+    let
+        s =
+            lookForSize m
+
+        b =
+            m.viewBoth
+    in
+    if b then
+        cmCssHelper (computeAvHeightSmall s.height) (computeAvWidthSmall s.width)
+
+    else
+        cmCssHelper (computeAvHeightBig s.height) (computeAvWidthBig s.width)
+
+
 
 -- resFunBoth : Model -> (Float -> Float) -> (Float -> Float) -> Html.Styled.Attribute msg
 -- resFunBoth m ch cw = m |> lookForSize |>  (cMcssFunHelper1Both  ch cw) |> css
-
 -- resFunBig : Model -> Html.Styled.Attribute msg
 -- resFunBig m =  resFunBoth m computeAvHeightBig computeAvWidthBig
-
-
-
 -- globalCMcss : Html msg
 -- globalCMcss = global
 --     [ class "CodeMirror"
@@ -48,19 +82,24 @@ cMcssFunHide m = cMcssFunBoth m (\_-> 0) (\_-> 0)
 --     ]
 
 
-
-type alias Size = 
+type alias Size =
     { width : Float
     , height : Float
     }
 
-lookForSize : Model -> Size
-lookForSize m = m.size |> Maybe.withDefault {height = 808 , width = 830 }
 
+
+-- lookForSize : Model -> Size
+-- lookForSize m = m.size |> Maybe.withDefault {height = 808 , width = 830 }
+
+
+lookForSize : Model -> Size
+lookForSize m =
+    m.size |> Maybe.withDefault { height = 980, width = 1852 }
 
 
 main : Program D.Value Model Msg
-main    =
+main =
     Browser.element
         { init = init
         , view = view
@@ -71,15 +110,18 @@ main    =
 
 codemirrorHTML : { a | htmleditorValue : String } -> Html Msg
 codemirrorHTML m =
-    codemirrorHelper HTML Sublime Monokai m.htmleditorValue HTMLEditorChanged
+    codemirrorHelper Sublime Monokai HTML HTMLEditorChanged m.htmleditorValue
 
 
 codemirrorCSS : { a | csseditorValue : String } -> Html Msg
 codemirrorCSS m =
-    codemirrorHelper CSS Sublime Monokai m.csseditorValue CSSEditorChanged
+    codemirrorHelper Sublime Monokai CSS CSSEditorChanged m.csseditorValue
+
 
 
 --wrapcss : String -> Html msg
+
+
 wrapcss : String -> Html msg
 wrapcss myCssString =
     node "style" [] [ Html.Styled.text myCssString ]
@@ -89,19 +131,21 @@ type alias Model =
     { htmleditorValue : String
     , csseditorValue : String
     , viewBoth : Bool
-    ,size : Maybe Size 
-
+    , size : Maybe Size
 
     --    , uploadedCode : Maybe String
     }
 
 
+
 --init : D.Value -> ( Model, Cmd Msg )
-init : a -> (Model, Cmd Msg)
+
+
+init : a -> ( Model, Cmd Msg )
 init _ =
     ( { htmleditorValue = " <!--Write your HTML Code in this text field-->"
       , csseditorValue = "/* Write your CSS Code in this text field */"
-      , viewBoth = True
+      , viewBoth = False
       , size = Nothing
       }
     , Dom.getViewport |> Task.perform Initialize
@@ -120,7 +164,6 @@ type Msg
 
 
 
-
 -- upload is not necessary because drag and drop works
 -- | Upload
 -- | NoUpload
@@ -129,7 +172,7 @@ type Msg
 -- | Sync
 
 
-update : Msg -> Model-> (Model, Cmd msg)
+update : Msg -> Model -> ( Model, Cmd msg )
 update msg m =
     case msg of
         NoOp ->
@@ -157,21 +200,28 @@ update msg m =
         SaveCSS ->
             ( m, Download.string "my_code.css" "text/css" m.csseditorValue )
 
-        Initialize viewport -> computeNewWindow viewport.viewport.width viewport.viewport.height m
-            -- let newWindow  =   {width = viewport.viewport.width, height = viewport.viewport.height}  in
-            -- ( {m |size  = Just newWindow }, Cmd.none)
-            --(m,Cmd.none)
-        ChangeViewSize w h -> computeNewWindow  w h m
-        
+        Initialize viewport ->
+            computeNewWindow viewport.viewport.width viewport.viewport.height m
+
+        -- let newWindow  =   {width = viewport.viewport.width, height = viewport.viewport.height}  in
+        -- ( {m |size  = Just newWindow }, Cmd.none)
+        --(m,Cmd.none)
+        ChangeViewSize w h ->
+            computeNewWindow w h m
+
         ChangeView ->
             ( { m | viewBoth = not m.viewBoth }, Cmd.none )
 
 
+computeNewWindow : Float -> Float -> Model -> ( Model, Cmd msg )
+computeNewWindow w h m =
+    let
+        newWindow =
+            { width = w, height = h }
+    in
+    ( { m | size = Just newWindow }, Cmd.none )
 
 
-computeNewWindow : Float -> Float -> Model -> (Model , Cmd msg)
-computeNewWindow w h m = let newWindow  =   {width = w, height = h}  in
-            ( {m |size  = Just newWindow }, Cmd.none)
 
 -- Upload ->
 --     ( m, Select.file [ "text/plain", "text/html" ] HTMLSelected )
@@ -182,8 +232,6 @@ computeNewWindow w h m = let newWindow  =   {width = w, height = h}  in
 -- NoUpload ->
 --     ( { m | htmleditorValue = " ", uploadedCode = Just " " }, Cmd.none )
 --Sync -> ( m, Cmd.none)
-
-
 
 
 saveHTMLButton : Element Msg
@@ -206,42 +254,48 @@ saveAndChangeButton =
     Element.row [ spacing 750 ] [ saveHTMLButton, changeViewButton ]
 
 
-
 resultCol : { a | csseditorValue : String, htmleditorValue : String } -> Element Msg
 resultCol m =
     Element.column
         textColumnStyle
         [ --emptyButton,
-          el resultStyle (html (toUnstyled ((div [] ((wrapcss m.csseditorValue) :: textHtml (removeSpaceandControl m.htmleditorValue))))))
+          el resultStyle (html (toUnstyled (div [] (wrapcss m.csseditorValue :: textHtml (removeSpaceandControl m.htmleditorValue)))))
         ]
 
 
+
 --viewTwoEditors : { a | htmleditorValue : String, csseditorValue : String } -> Element Msg
+
+
 viewTwoEditors : Model -> Element Msg
 viewTwoEditors m =
     Element.row rowStyle
         [ Element.column editorColumnStyle
             [ saveHTMLButton --saveAndChangeButton, changeViewButton
-            , el smallEditorstyle (html (toUnstyled(div [] [ cMcssFunSmall m, codemirrorHTML m ]))) --el smallEditorstyle (html (codemirrorHTML m))
+            , el smallEditorstyle (html (toUnstyled (codemirrorHTML m ))) --el smallEditorstyle (html (codemirrorHTML m))
             , saveCSSButton
-            , el smallEditorstyle (html (toUnstyled(div [] [ cMcssFunSmall m, codemirrorCSS m ])))
+            , el smallEditorstyle (html (toUnstyled (codemirrorCSS m )))
             ]
         , resultCol m
         ]
 
 
-
-viewOneEditor : Model-> Element Msg
+viewOneEditor : Model -> Element Msg
 viewOneEditor m =
     Element.column rowStyle
-        [ saveHTMLButton 
+        [ saveHTMLButton
         , Element.row rowEditorResStyle
-            [ el bigEditorStyle (html (toUnstyled (div [] [cMcssFunBig m, codemirrorHTML m ])))
-            , el resultStyle (html (toUnstyled(div [] (wrapcss m.csseditorValue :: textHtml (removeSpaceandControl m.htmleditorValue)))))
-    --        , el hideEditor (html (toUnstyled(div [] [ cMcssFunHide m, codemirrorCSS m ])))
+            [ el bigEditorStyle (html (toUnstyled ( codemirrorHTML m )))
+            , el resultStyle (html (toUnstyled (div [] (wrapcss m.csseditorValue :: textHtml (removeSpaceandControl m.htmleditorValue)))))
+
+            --        , el hideEditor (html (toUnstyled(div [] [ cMcssFunHide m, codemirrorCSS m ])))
             ]
         ]
+
+
+
 -- (css[ Css.backgroundColor (Css.rgb 255 255 255)])
+
 
 viewHelper : a -> (a -> Element msg) -> Html.Html msg
 viewHelper m f =
@@ -254,17 +308,18 @@ viewHelper m f =
                 }
             ]
         }
-        [ height shrink, width shrink ]
+        [ height fill, width fill ]
         (f m)
 
 
 view : Model -> Html.Html Msg
-view m =
-    if m.viewBoth then
-        viewHelper m viewTwoEditors--viewTwoEditors
+view m = toUnstyled (div [css [Css.height (Css.pct 100.0)]] [ (cmCss m),
+    fromUnstyled(if m.viewBoth then
+        viewHelper m viewTwoEditors
+        --viewTwoEditors
 
     else
-        viewHelper m viewOneEditor
+        viewHelper m viewOneEditor)])
 
 
 
@@ -278,6 +333,8 @@ viewOnlyEditor m =
 
 
 --subscriptions : Model -> Sub Msg
+
+
 subscriptions : a -> Sub Msg
 subscriptions _ =
     E.onResize (\w h -> ChangeViewSize (toFloat w) (toFloat h))

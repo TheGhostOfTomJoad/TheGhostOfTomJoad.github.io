@@ -77,8 +77,8 @@ keyMapToString m =
             "sublime"
 
 
-codemirrorHelper : Mode -> KeyMap -> Theme -> String -> (String -> value) -> Html.Styled.Html value
-codemirrorHelper mode km theme content constructor =
+codemirrorHelper : KeyMap -> Theme -> Mode -> (String -> value) -> String -> Html.Styled.Html value
+codemirrorHelper  km theme mode constructor content  =
     node "code-mirror"
         [ attribute "mode" <| modeToString mode
         , attribute "keymap" <| keyMapToString km
