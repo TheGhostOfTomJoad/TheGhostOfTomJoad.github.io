@@ -4,7 +4,7 @@ module Main exposing (..)
 import Browser.Dom as Dom
 import Browser.Events as E
 import Browser
-import CodeMirror exposing (KeyMap(..), Mode(..), Theme(..), codemirrorHelper)
+import CodeMirror exposing (KeyMap(..), Mode(..), Theme(..), codeMirror)
 import Element exposing (..)
 import Element.Input exposing (button)
 import File.Download as Download
@@ -17,21 +17,26 @@ import Time exposing (Weekday(..))
 import Task as Task
 import Html.Styled exposing (Html,div,toUnstyled,node)
 --import Html.Styled.Attributes exposing (css)
-import ComputeRemSpace exposing (cMcssFunHelperBoth, cMcssFunHelper1Both, computeAvHeightBig,computeAvWidthBig,computeAvHeightSmall,computeAvWidthSmall)
+import ComputeRemSpace exposing (computeAvHeightBig,computeAvWidthBig,computeAvHeightSmall,computeAvWidthSmall)
 
-cMcssFunBoth : Model -> (Float -> Float) -> (Float -> Float) -> Html msg
-cMcssFunBoth m ch cw = m |> lookForSize |> cMcssFunHelperBoth (cMcssFunHelper1Both ch cw )
+-- cMcssFunBoth : Model -> (Float -> Float) -> (Float -> Float) -> Html msg
+-- cMcssFunBoth m ch cw = m |> lookForSize |> cMcssFunHelperBoth (cMcssFunHelper1Both ch cw )
 
-cMcssFunBig : Model -> Html msg
-cMcssFunBig m = cMcssFunBoth m computeAvHeightBig computeAvWidthBig
+-- cMcssFunBig : Model -> Html msg
+-- cMcssFunBig m = cMcssFunBoth m computeAvHeightBig computeAvWidthBig
 
 
-cMcssFunSmall : Model -> Html msg
-cMcssFunSmall m = cMcssFunBoth m computeAvHeightSmall computeAvWidthSmall
+-- cMcssFunSmall : Model -> Html msg
+-- cMcssFunSmall m = cMcssFunBoth m computeAvHeightSmall computeAvWidthSmall
 
-cMcssFunHide : Model -> Html msg
-cMcssFunHide m = cMcssFunBoth m (\_-> 0) (\_-> 0)
+-- cMcssFunHide : Model -> Html msg
+-- cMcssFunHide m = cMcssFunBoth m (\_-> 0) (\_-> 0)
 
+
+
+
+
+--computeAvSpace m  ch cw = (m.size.width
 -- resFunBoth : Model -> (Float -> Float) -> (Float -> Float) -> Html.Styled.Attribute msg
 -- resFunBoth m ch cw = m |> lookForSize |>  (cMcssFunHelper1Both  ch cw) |> css
 
@@ -69,14 +74,27 @@ main    =
         }
 
 
-codemirrorHTML : { a | htmleditorValue : String } -> Html Msg
-codemirrorHTML m =
-    codemirrorHelper HTML Sublime Monokai m.htmleditorValue HTMLEditorChanged
+--codemirrorHTML : { a | htmleditorValue : String } -> Html Msg
+codemirrorHTML : Float -> Float -> String -> Html Msg
+codemirrorHTML  =
+    codeMirror HTML  HTMLEditorChanged-- m.htmleditorValue --
 
 
-codemirrorCSS : { a | csseditorValue : String } -> Html Msg
-codemirrorCSS m =
-    codemirrorHelper CSS Sublime Monokai m.csseditorValue CSSEditorChanged
+--codemirrorCSS : { a | csseditorValue : String } -> Html Msg
+codemirrorCSS : Float -> Float -> String -> Html Msg
+codemirrorCSS  =
+    codeMirror CSS  CSSEditorChanged--m.csseditorValue 
+
+
+---code repetition
+bigCmHTML : Model -> Html Msg
+bigCmHTML m = codemirrorHTML (computeAvHeightBig (lookForSize m).height) (computeAvWidthBig (lookForSize m).width) m.htmleditorValue
+
+smallCmHTML : Model -> Html Msg
+smallCmHTML m = codemirrorHTML (computeAvHeightSmall (lookForSize m).height) (computeAvWidthSmall (lookForSize m).width) m.htmleditorValue
+
+smallCmCss : Model -> Html Msg
+smallCmCss m = codemirrorCSS (computeAvHeightBig (lookForSize m).height) (computeAvWidthBig (lookForSize m).width) m.csseditorValue
 
 
 --wrapcss : String -> Html msg
@@ -222,9 +240,9 @@ viewTwoEditors m =
     Element.row rowStyle
         [ Element.column editorColumnStyle
             [ saveHTMLButton --saveAndChangeButton, changeViewButton
-            , el smallEditorstyle (html (toUnstyled(div [] [ cMcssFunSmall m, codemirrorHTML m ]))) --el smallEditorstyle (html (codemirrorHTML m))
+            , el smallEditorstyle (html (toUnstyled(div [] [ smallCmHTML m ]))) --el smallEditorstyle (html (codemirrorHTML m))
             , saveCSSButton
-            , el smallEditorstyle (html (toUnstyled(div [] [ cMcssFunSmall m, codemirrorCSS m ])))
+            , el smallEditorstyle (html (toUnstyled(div [] [ smallCmCss m ])))
             ]
         , resultCol m
         ]
@@ -236,7 +254,7 @@ viewOneEditor m =
     Element.column rowStyle
         [ saveHTMLButton 
         , Element.row rowEditorResStyle
-            [ el bigEditorStyle (html (toUnstyled (div [] [cMcssFunBig m, codemirrorHTML m ])))
+            [ el bigEditorStyle (html (toUnstyled (div [] [ bigCmHTML m ])))
             , el resultStyle (html (toUnstyled(div [] (wrapcss m.csseditorValue :: textHtml (removeSpaceandControl m.htmleditorValue)))))
     --        , el hideEditor (html (toUnstyled(div [] [ cMcssFunHide m, codemirrorCSS m ])))
             ]
@@ -271,9 +289,9 @@ view m =
 --for debugging
 
 
-viewOnlyEditor : { a | editorValue : { b | htmleditorValue : String } } -> Html Msg
-viewOnlyEditor m =
-    codemirrorHTML m.editorValue
+-- viewOnlyEditor : { a | editorValue : { b | htmleditorValue : String } } -> Html Msg
+-- viewOnlyEditor m =
+--     codemirrorHTML m.editorValue
 
 
 
