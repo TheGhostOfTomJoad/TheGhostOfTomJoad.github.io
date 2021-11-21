@@ -55,7 +55,9 @@ customElements.define('code-mirror',
       this._editor.on('changes', () => {
         this._editorValue = this._editor.getValue()
         this.dispatchEvent(new CustomEvent('editorChanged'))
+        // this._editor.setSize("100%","100%");
       })
+      
     }
 
     constructor() {
@@ -65,8 +67,10 @@ customElements.define('code-mirror',
       this.keymap = this.getAttribute('keymap');
       this.theme = this.getAttribute('theme');
       this._editorValue = this.getAttribute('editorValue');
+      
 
       const editorElem = document.createElement("editor");
+     
     }
 
     get editorValue() {

@@ -16892,26 +16892,7 @@ var $author$project$CodeMirror$codemirrorHelper = F7(
 			'code-mirror',
 			_List_fromArray(
 				[
-					A2(
-					$rtfeldman$elm_css$Html$Styled$Attributes$style,
-					'width',
-					$elm$core$String$concat(
-						_List_fromArray(
-							[
-								$elm$core$String$fromInt(
-								$elm$core$Basics$round(1000)),
-								' px'
-							]))),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$Attributes$style,
-					'height',
-					$elm$core$String$concat(
-						_List_fromArray(
-							[
-								$elm$core$String$fromInt(
-								$elm$core$Basics$round(w)),
-								' px'
-							]))),
+					A2($rtfeldman$elm_css$Html$Styled$Attributes$style, 'height', 'auto'),
 					A2(
 					$rtfeldman$elm_css$Html$Styled$Attributes$attribute,
 					'mode',

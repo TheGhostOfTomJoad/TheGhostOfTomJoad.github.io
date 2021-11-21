@@ -98,9 +98,10 @@ keyMapToString m =
 codemirrorHelper : KeyMap -> Theme -> Mode -> (String -> value) -> Float -> Float -> String -> Html.Styled.Html value
 codemirrorHelper km theme mode constructor w h content =
     node "code-mirror"
-        [ style "width" (String.concat [ String.fromInt (round 1000), " px" ])
-        , style "height" (String.concat [ String.fromInt (round w), " px" ])
-        , attribute "mode" <| modeToString mode
+        [ style "height" "auto",
+        --     style "width" (String.concat [ String.fromInt (round 1000), " px" ])
+        -- , style "height" (String.concat [ String.fromInt (round w), " px" ])
+         attribute "mode" <| modeToString mode
         , attribute "keymap" <| keyMapToString km
         , attribute "theme" <| themeToString theme
         , attribute "editorValue" content
