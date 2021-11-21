@@ -11156,6 +11156,85 @@ var $rtfeldman$elm_css$Css$Global$class = F2(
 						$rtfeldman$elm_css$Css$Structure$ClassSelector(str)
 					])));
 	});
+var $rtfeldman$elm_css$Css$Preprocess$AppendProperty = function (a) {
+	return {$: 'AppendProperty', a: a};
+};
+var $rtfeldman$elm_css$Css$property = F2(
+	function (key, value) {
+		return $rtfeldman$elm_css$Css$Preprocess$AppendProperty(key + (':' + value));
+	});
+var $rtfeldman$elm_css$Css$prop1 = F2(
+	function (key, arg) {
+		return A2($rtfeldman$elm_css$Css$property, key, arg.value);
+	});
+var $rtfeldman$elm_css$Css$height = $rtfeldman$elm_css$Css$prop1('height');
+var $rtfeldman$elm_css$Css$PxUnits = {$: 'PxUnits'};
+var $rtfeldman$elm_css$Css$Structure$Compatible = {$: 'Compatible'};
+var $rtfeldman$elm_css$Css$Internal$lengthConverter = F3(
+	function (units, unitLabel, numericValue) {
+		return {
+			absoluteLength: $rtfeldman$elm_css$Css$Structure$Compatible,
+			calc: $rtfeldman$elm_css$Css$Structure$Compatible,
+			flexBasis: $rtfeldman$elm_css$Css$Structure$Compatible,
+			fontSize: $rtfeldman$elm_css$Css$Structure$Compatible,
+			length: $rtfeldman$elm_css$Css$Structure$Compatible,
+			lengthOrAuto: $rtfeldman$elm_css$Css$Structure$Compatible,
+			lengthOrAutoOrCoverOrContain: $rtfeldman$elm_css$Css$Structure$Compatible,
+			lengthOrMinMaxDimension: $rtfeldman$elm_css$Css$Structure$Compatible,
+			lengthOrNone: $rtfeldman$elm_css$Css$Structure$Compatible,
+			lengthOrNoneOrMinMaxDimension: $rtfeldman$elm_css$Css$Structure$Compatible,
+			lengthOrNumber: $rtfeldman$elm_css$Css$Structure$Compatible,
+			lengthOrNumberOrAutoOrNoneOrContent: $rtfeldman$elm_css$Css$Structure$Compatible,
+			numericValue: numericValue,
+			textIndent: $rtfeldman$elm_css$Css$Structure$Compatible,
+			unitLabel: unitLabel,
+			units: units,
+			value: _Utils_ap(
+				$elm$core$String$fromFloat(numericValue),
+				unitLabel)
+		};
+	});
+var $rtfeldman$elm_css$Css$px = A2($rtfeldman$elm_css$Css$Internal$lengthConverter, $rtfeldman$elm_css$Css$PxUnits, 'px');
+var $rtfeldman$elm_css$Css$width = $rtfeldman$elm_css$Css$prop1('width');
+var $author$project$Main$cmCssHelper1 = F2(
+	function (h, w) {
+		return _List_fromArray(
+			[
+				$rtfeldman$elm_css$Css$height(
+				$rtfeldman$elm_css$Css$px(h)),
+				$rtfeldman$elm_css$Css$width(
+				$rtfeldman$elm_css$Css$px(w))
+			]);
+	});
+var $author$project$ComputeRemSpace$computeAvHeightBig = function (h) {
+	return h - 80;
+};
+var $author$project$ComputeRemSpace$computeAvHeightSmall = function (h) {
+	return (h - 120) / 2;
+};
+var $author$project$ComputeRemSpace$computeAvWidthBig = function (w) {
+	return (w - 100) / 2;
+};
+var $author$project$ComputeRemSpace$computeAvWidthSmall = function (w) {
+	return (w - 110) / 2;
+};
+var $author$project$Main$lookForSize = function (m) {
+	return A2(
+		$elm$core$Maybe$withDefault,
+		{height: 980, width: 1852},
+		m.size);
+};
+var $author$project$Main$cmCss1 = function (m) {
+	var s = $author$project$Main$lookForSize(m);
+	var b = m.viewBoth;
+	return b ? A2(
+		$author$project$Main$cmCssHelper1,
+		$author$project$ComputeRemSpace$computeAvHeightSmall(s.height),
+		$author$project$ComputeRemSpace$computeAvWidthSmall(s.width)) : A2(
+		$author$project$Main$cmCssHelper1,
+		$author$project$ComputeRemSpace$computeAvHeightBig(s.height),
+		$author$project$ComputeRemSpace$computeAvWidthBig(s.width));
+};
 var $elm$core$List$any = F2(
 	function (isOkay, list) {
 		any:
@@ -12836,91 +12915,15 @@ var $rtfeldman$elm_css$Css$Global$global = function (snippets) {
 								$elm$core$List$singleton(
 									$rtfeldman$elm_css$Css$Preprocess$stylesheet(snippets)))))))));
 };
-var $rtfeldman$elm_css$Css$Preprocess$AppendProperty = function (a) {
-	return {$: 'AppendProperty', a: a};
-};
-var $rtfeldman$elm_css$Css$property = F2(
-	function (key, value) {
-		return $rtfeldman$elm_css$Css$Preprocess$AppendProperty(key + (':' + value));
-	});
-var $rtfeldman$elm_css$Css$prop1 = F2(
-	function (key, arg) {
-		return A2($rtfeldman$elm_css$Css$property, key, arg.value);
-	});
-var $rtfeldman$elm_css$Css$height = $rtfeldman$elm_css$Css$prop1('height');
-var $rtfeldman$elm_css$Css$PxUnits = {$: 'PxUnits'};
-var $rtfeldman$elm_css$Css$Structure$Compatible = {$: 'Compatible'};
-var $rtfeldman$elm_css$Css$Internal$lengthConverter = F3(
-	function (units, unitLabel, numericValue) {
-		return {
-			absoluteLength: $rtfeldman$elm_css$Css$Structure$Compatible,
-			calc: $rtfeldman$elm_css$Css$Structure$Compatible,
-			flexBasis: $rtfeldman$elm_css$Css$Structure$Compatible,
-			fontSize: $rtfeldman$elm_css$Css$Structure$Compatible,
-			length: $rtfeldman$elm_css$Css$Structure$Compatible,
-			lengthOrAuto: $rtfeldman$elm_css$Css$Structure$Compatible,
-			lengthOrAutoOrCoverOrContain: $rtfeldman$elm_css$Css$Structure$Compatible,
-			lengthOrMinMaxDimension: $rtfeldman$elm_css$Css$Structure$Compatible,
-			lengthOrNone: $rtfeldman$elm_css$Css$Structure$Compatible,
-			lengthOrNoneOrMinMaxDimension: $rtfeldman$elm_css$Css$Structure$Compatible,
-			lengthOrNumber: $rtfeldman$elm_css$Css$Structure$Compatible,
-			lengthOrNumberOrAutoOrNoneOrContent: $rtfeldman$elm_css$Css$Structure$Compatible,
-			numericValue: numericValue,
-			textIndent: $rtfeldman$elm_css$Css$Structure$Compatible,
-			unitLabel: unitLabel,
-			units: units,
-			value: _Utils_ap(
-				$elm$core$String$fromFloat(numericValue),
-				unitLabel)
-		};
-	});
-var $rtfeldman$elm_css$Css$px = A2($rtfeldman$elm_css$Css$Internal$lengthConverter, $rtfeldman$elm_css$Css$PxUnits, 'px');
-var $rtfeldman$elm_css$Css$width = $rtfeldman$elm_css$Css$prop1('width');
-var $author$project$Main$cmCssHelper = F2(
-	function (h, w) {
-		return $rtfeldman$elm_css$Css$Global$global(
-			_List_fromArray(
-				[
-					A2(
-					$rtfeldman$elm_css$Css$Global$class,
-					'CodeMirror',
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Css$height(
-							$rtfeldman$elm_css$Css$px(h)),
-							$rtfeldman$elm_css$Css$width(
-							$rtfeldman$elm_css$Css$px(w))
-						]))
-				]));
-	});
-var $author$project$ComputeRemSpace$computeAvHeightBig = function (h) {
-	return h - 80;
-};
-var $author$project$ComputeRemSpace$computeAvHeightSmall = function (h) {
-	return (h - 120) / 2;
-};
-var $author$project$ComputeRemSpace$computeAvWidthBig = function (w) {
-	return (w - 100) / 2;
-};
-var $author$project$ComputeRemSpace$computeAvWidthSmall = function (w) {
-	return (w - 110) / 2;
-};
-var $author$project$Main$lookForSize = function (m) {
-	return A2(
-		$elm$core$Maybe$withDefault,
-		{height: 980, width: 1852},
-		m.size);
-};
 var $author$project$Main$cmCss = function (m) {
-	var s = $author$project$Main$lookForSize(m);
-	var b = m.viewBoth;
-	return b ? A2(
-		$author$project$Main$cmCssHelper,
-		$author$project$ComputeRemSpace$computeAvHeightSmall(s.height),
-		$author$project$ComputeRemSpace$computeAvWidthSmall(s.width)) : A2(
-		$author$project$Main$cmCssHelper,
-		$author$project$ComputeRemSpace$computeAvHeightBig(s.height),
-		$author$project$ComputeRemSpace$computeAvWidthBig(s.width));
+	return $rtfeldman$elm_css$Css$Global$global(
+		_List_fromArray(
+			[
+				A2(
+				$rtfeldman$elm_css$Css$Global$class,
+				'CodeMirror',
+				$author$project$Main$cmCss1(m))
+			]));
 };
 var $rtfeldman$elm_css$VirtualDom$Styled$Attribute = F3(
 	function (a, b, c) {
