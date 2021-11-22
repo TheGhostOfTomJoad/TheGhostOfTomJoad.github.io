@@ -10,10 +10,10 @@ import Browser.Events as E
 import CodeMirror exposing (KeyMap(..), Mode(..), Theme(..), codemirrorHelper)
 import ComputeRemSpace exposing (computeAvHeightBig, computeAvHeightSmall, computeAvWidthBig, computeAvWidthSmall)
 import Css
-import Css.Global exposing (class, global)
+import Css.Global exposing (class, global,id,everything,descendants,typeSelector)
 import Element exposing (..)
 import Element.Input exposing (button)
---import Element.Keyed as EK
+import Element.Keyed as EK
 import File.Download as Download
 import Html
 import Html.Styled exposing (Html, div, fromUnstyled, iframe, node, toUnstyled)
@@ -50,9 +50,13 @@ cmCssHelper1 h w =
     [ Css.height (Css.px h), Css.width (Css.px w) ]
 
 
+--cmCss : Model -> Html msg
 cmCss : Model -> Html msg
 cmCss m =
-    global [ class "CodeMirror" (cmCss1 m) ]
+    let cssEditorStyle = [id "id-csseditor"  [descendants[everything[ Css.height (Css.px 0), Css.width (Css.px 0) ]]]]
+        x = [ class "CodeMirror" (cmCss1 m) ] 
+        res = if m.viewBoth then x else cssEditorStyle ++  x in
+        global res
 
 
 cmCss1 : Model -> List Css.Style
@@ -133,12 +137,12 @@ main =
 
 codemirrorHTML : { a | htmleditorValue : String } -> Html Msg
 codemirrorHTML m =
-    codemirrorHelper Sublime Monokai HTML HTMLEditorChanged m.htmleditorValue
+    codemirrorHelper Sublime Monokai HTML HTMLEditorChanged "id-htmleditor" m.htmleditorValue
 
 
 codemirrorCSS : { a | csseditorValue : String } -> Html Msg
 codemirrorCSS m =
-    codemirrorHelper Sublime Monokai CSS CSSEditorChanged m.csseditorValue
+    codemirrorHelper Sublime Monokai CSS CSSEditorChanged "id-csseditor" m.csseditorValue
 
 
 
@@ -338,54 +342,54 @@ prepareCode html css =
         ]
 
 
-viewTwoEditors : Model -> Element Msg
+-- viewTwoEditors : Model -> Element Msg
+-- viewTwoEditors m =
+--     Element.row rowStyle
+--         [ Element.column editorColumnStyle
+--             [ saveHTMLButton --saveAndChangeButton, changeViewButton
+--             , el smallEditorstyle (html (toUnstyled (codemirrorHTML m))) --el smallEditorstyle (html (codemirrorHTML m))
+--             , saveCSSButton
+--             , el smallEditorstyle (html (toUnstyled (codemirrorCSS m)))
+--             ]
+--         , resultCol m
+--         ]
+
+
 viewTwoEditors m =
     Element.row rowStyle
-        [ Element.column editorColumnStyle
-            [ saveHTMLButton --saveAndChangeButton, changeViewButton
-            , el smallEditorstyle (html (toUnstyled (codemirrorHTML m))) --el smallEditorstyle (html (codemirrorHTML m))
-            , saveCSSButton
-            , el smallEditorstyle (html (toUnstyled (codemirrorCSS m)))
+        [ EK.column editorColumnStyle
+            [("buttons" ,(Element.row [][  saveHTMLButton ,  changeViewButton ]))
+            , ( "htmlEditor", el smallEditorstyle (html (toUnstyled (codemirrorHTML m))) ) --el smallEditorstyle (html (codemirrorHTML m))
+            , ( "saveCSSButton", saveCSSButton )
+            , ( "cssEditor", el smallEditorstyle (html (toUnstyled (codemirrorCSS m))) )
+            ]
+        , resultCol m
+        ]
+
+viewOneEditor m =
+    Element.row rowStyle
+        [ EK.column editorColumnStyle
+            [("buttons" ,(Element.row [][  saveHTMLButton ,  changeViewButton ]))
+            , ( "htmlEditor", el smallEditorstyle (html (toUnstyled (codemirrorHTML m))) ) --el smallEditorstyle (html (codemirrorHTML m))
+            ,  ( "cssEditor", el [Element.height (px 0)] (html (toUnstyled (codemirrorCSS m))) )
             ]
         , resultCol m
         ]
 
 
--- viewTwoEditors m =
---     Element.row rowStyle
---         [ EK.column editorColumnStyle
---             [("buttons" ,(Element.row [][  saveHTMLButton ,  changeViewButton ]))
---             , ( "htmlEditor", el smallEditorstyle (html (toUnstyled (codemirrorHTML m))) ) --el smallEditorstyle (html (codemirrorHTML m))
---             , ( "saveCSSButton", saveCSSButton )
---             , ( "cssEditor", el smallEditorstyle (html (toUnstyled (codemirrorCSS m))) )
---             ]
---         , resultCol m
---         ]
 
+-- viewOneEditor : Model -> Element Msg
 -- viewOneEditor m =
---     Element.row rowStyle
---         [ EK.column editorColumnStyle
---             [("buttons" ,(Element.row [][  saveHTMLButton ,  changeViewButton ]))
---             , ( "htmlEditor", el smallEditorstyle (html (toUnstyled (codemirrorHTML m))) ) --el smallEditorstyle (html (codemirrorHTML m))
---             ,  ( "cssEditor", el [Element.height (px 0)] (html (toUnstyled (codemirrorCSS m))) )
+--     Element.column rowStyle
+--         [ saveHTMLButton
+--         , Element.row rowEditorResStyle
+--             [ el bigEditorStyle (html (toUnstyled (codemirrorHTML m)))
+--             --   , el resultStyle (html (toUnstyled (div [] (wrapcss m.csseditorValue :: textHtml (removeSpaceandControl m.htmleditorValue)))))
+--             , el resultStyle (html (toUnstyled (div [] [ wrapcss m.csseditorValue, renderCode m ])))
+--             --        , el hideEditor (html (toUnstyled(div [] [ cMcssFunHide m, codemirrorCSS m ])))
 --             ]
---         , resultCol m
 --         ]
-
-
-
-viewOneEditor : Model -> Element Msg
-viewOneEditor m =
-    Element.column rowStyle
-        [ saveHTMLButton
-        , Element.row rowEditorResStyle
-            [ el bigEditorStyle (html (toUnstyled (codemirrorHTML m)))
-            --   , el resultStyle (html (toUnstyled (div [] (wrapcss m.csseditorValue :: textHtml (removeSpaceandControl m.htmleditorValue)))))
-            , el resultStyle (html (toUnstyled (div [] [ wrapcss m.csseditorValue, renderCode m ])))
-            --        , el hideEditor (html (toUnstyled(div [] [ cMcssFunHide m, codemirrorCSS m ])))
-            ]
-        ]
--- (css[ Css.backgroundColor (Css.rgb 255 255 255)])
+-- -- (css[ Css.backgroundColor (Css.rgb 255 255 255)])
 
 
 viewHelper : a -> (a -> Element msg) -> Html.Html msg

@@ -8,7 +8,7 @@ module ComputeRemSpace exposing (..)
 
 computeAvHeightBig : number -> number
 computeAvHeightBig h =
-    h - 80
+    h - 70
 
 
 computeAvWidthBig : Float -> Float
@@ -35,6 +35,6 @@ computeAvHeightSmall h =
 
 computeAvWidthSmall : Float -> Float
 computeAvWidthSmall w =
-    (w - 110) / 2
+    (w - 100) / 2
 
 --emtyCodemirror = undefined
