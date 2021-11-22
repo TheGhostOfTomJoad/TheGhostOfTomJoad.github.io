@@ -13,6 +13,7 @@ import Css
 import Css.Global exposing (class, global)
 import Element exposing (..)
 import Element.Input exposing (button)
+--import Element.Keyed as EK
 import File.Download as Download
 import Html
 import Html.Styled exposing (Html, div, fromUnstyled, iframe, node, toUnstyled)
@@ -328,8 +329,8 @@ prepareCode html css =
 </head>
   <body>
   """
-        , html,
-            """
+        , html
+        , """
 
   </body>
 </html>
@@ -350,22 +351,40 @@ viewTwoEditors m =
         ]
 
 
+-- viewTwoEditors m =
+--     Element.row rowStyle
+--         [ EK.column editorColumnStyle
+--             [("buttons" ,(Element.row [][  saveHTMLButton ,  changeViewButton ]))
+--             , ( "htmlEditor", el smallEditorstyle (html (toUnstyled (codemirrorHTML m))) ) --el smallEditorstyle (html (codemirrorHTML m))
+--             , ( "saveCSSButton", saveCSSButton )
+--             , ( "cssEditor", el smallEditorstyle (html (toUnstyled (codemirrorCSS m))) )
+--             ]
+--         , resultCol m
+--         ]
+
+-- viewOneEditor m =
+--     Element.row rowStyle
+--         [ EK.column editorColumnStyle
+--             [("buttons" ,(Element.row [][  saveHTMLButton ,  changeViewButton ]))
+--             , ( "htmlEditor", el smallEditorstyle (html (toUnstyled (codemirrorHTML m))) ) --el smallEditorstyle (html (codemirrorHTML m))
+--             ,  ( "cssEditor", el [Element.height (px 0)] (html (toUnstyled (codemirrorCSS m))) )
+--             ]
+--         , resultCol m
+--         ]
+
+
+
 viewOneEditor : Model -> Element Msg
 viewOneEditor m =
     Element.column rowStyle
         [ saveHTMLButton
         , Element.row rowEditorResStyle
             [ el bigEditorStyle (html (toUnstyled (codemirrorHTML m)))
-
             --   , el resultStyle (html (toUnstyled (div [] (wrapcss m.csseditorValue :: textHtml (removeSpaceandControl m.htmleditorValue)))))
             , el resultStyle (html (toUnstyled (div [] [ wrapcss m.csseditorValue, renderCode m ])))
-
             --        , el hideEditor (html (toUnstyled(div [] [ cMcssFunHide m, codemirrorCSS m ])))
             ]
         ]
-
-
-
 -- (css[ Css.backgroundColor (Css.rgb 255 255 255)])
 
 
