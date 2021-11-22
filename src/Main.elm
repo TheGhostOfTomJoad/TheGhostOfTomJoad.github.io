@@ -2,11 +2,11 @@ module Main exposing (..)
 
 -- exposing ( Html,div)
 --import Html.Styled.Attributes exposing (css)
+--import HtmlHelpers exposing (textHtml,removeSpaceandControl)
 
 import Browser
 import Browser.Dom as Dom
 import Browser.Events as E
-import HtmlHelpers exposing (textHtml,removeSpaceandControl)
 import CodeMirror exposing (KeyMap(..), Mode(..), Theme(..), codemirrorHelper)
 import ComputeRemSpace exposing (computeAvHeightBig, computeAvHeightSmall, computeAvWidthBig, computeAvWidthSmall)
 import Css
@@ -15,52 +15,43 @@ import Element exposing (..)
 import Element.Input exposing (button)
 import File.Download as Download
 import Html
-import Html.Styled exposing (Html, div, node, toUnstyled,fromUnstyled,iframe)
-import Html.Styled.Attributes exposing (css,srcdoc,style)
-
+import Html.Styled exposing (Html, div, fromUnstyled, iframe, node, toUnstyled)
+import Html.Styled.Attributes exposing (css, srcdoc, style)
 import Json.Decode as D
 import Styles exposing (..)
 import Task as Task
+
+
+
 --import Html.Styled.Attributes exposing (src)
 --import Time exposing (Weekday(..))
-
-
 -- cMcssFunBoth : Model -> (Float -> Float) -> (Float -> Float) -> Html msg
 -- cMcssFunBoth m ch cw =
 --     m |> lookForSize |> cMcssFunHelperBoth (cMcssFunHelper1Both ch cw)
-
-
 -- cMcssFunBig : Model -> Html msg
 -- cMcssFunBig m =
 --     cMcssFunBoth m computeAvHeightBig computeAvWidthBig
-
-
 -- cMcssFunSmall : Model -> Html msg
 -- cMcssFunSmall m =
 --     cMcssFunBoth m computeAvHeightSmall computeAvWidthSmall
-
-
 -- cMcssFunHide : Model -> Html msg
 -- cMcssFunHide m =
 --     cMcssFunBoth m (\_ -> 0) (\_ -> 0)
-
-
-
 --h1 w h = global [ class "CodeMirror" [Css.height (Css.px h), Css.width (Css.px w)] ]
-
-
 -- cmCssHelper : Float -> Float -> Html msg
 -- cmCssHelper  h w =
 --     global [ class "CodeMirror" [ Css.height (Css.px h), Css.width (Css.px w) ] ]
+--cmCssHelper =
 
---cmCssHelper =  
+
 cmCssHelper1 : Float -> Float -> List Css.Style
-cmCssHelper1  h w =
-     [ Css.height (Css.px h), Css.width (Css.px w) ] 
+cmCssHelper1 h w =
+    [ Css.height (Css.px h), Css.width (Css.px w) ]
 
 
 cmCss : Model -> Html msg
-cmCss m = global [ class "CodeMirror" (cmCss1 m)]
+cmCss m =
+    global [ class "CodeMirror" (cmCss1 m) ]
 
 
 cmCss1 : Model -> List Css.Style
@@ -78,6 +69,7 @@ cmCss1 m =
     else
         cmCssHelper1 (computeAvHeightBig s.height) (computeAvWidthBig s.width)
 
+
 cmCss2 : Model -> List Css.Style
 cmCss2 m =
     let
@@ -88,15 +80,17 @@ cmCss2 m =
             m.viewBoth
     in
     if b then
-        cmCssHelper1 ( s.height - 70) ((s.width - 90)/2)
+        cmCssHelper1 (s.height - 70) ((s.width - 90) / 2)
 
     else
-        cmCssHelper1 ( s.height - 95) ((s.width - 90)/2)
-
+        cmCssHelper1 (s.height - 95) ((s.width - 90) / 2)
 
 
 otherCss : Html msg
-otherCss = global [ class "CodeMirror" [Css.height (Css.vh 90.5)]]
+otherCss =
+    global [ class "CodeMirror" [ Css.height (Css.vh 90.5) ] ]
+
+
 
 -- resFunBoth : Model -> (Float -> Float) -> (Float -> Float) -> Html.Styled.Attribute msg
 -- resFunBoth m ch cw = m |> lookForSize |>  (cMcssFunHelper1Both  ch cw) |> css
@@ -154,8 +148,12 @@ wrapcss : String -> Html msg
 wrapcss myCssString =
     node "style" [] [ Html.Styled.text myCssString ]
 
+
 wrapCss2 : String -> String
-wrapCss2 css = String.concat ["<style> ",css, " </style>"   ] 
+wrapCss2 css =
+    String.concat [ "<style> ", css, " </style>" ]
+
+
 type alias Model =
     { htmleditorValue : String
     , csseditorValue : String
@@ -283,13 +281,17 @@ saveAndChangeButton =
     Element.row [ spacing 750 ] [ saveHTMLButton, changeViewButton ]
 
 
+
 --resultCol : { a | csseditorValue : String, htmleditorValue : String } -> Element Msg
+
+
 resultCol : { htmleditorValue : String, csseditorValue : String, viewBoth : Bool, size : Maybe Size } -> Element msg
 resultCol m =
     Element.column
         textColumnStyle
         [ --emptyButton,
-          el resultStyle (html (toUnstyled(div [] [renderCode m] )))--el resultStyle  (html (toUnstyled (renderCode m)))  --
+          el resultStyle (html (toUnstyled (div [] [ renderCode m ]))) --el resultStyle  (html (toUnstyled (renderCode m)))  --
+
         --el resultStyle (html (toUnstyled (div [] (wrapcss m.csseditorValue :: textHtml (removeSpaceandControl m.htmleditorValue)))))
         ]
 
@@ -298,12 +300,41 @@ resultCol m =
 --viewTwoEditors : { a | htmleditorValue : String, csseditorValue : String } -> Element Msg
 --renderCode : String -> String -> Html msg
 --renderCode html css = iframe [srcdoc (String.concat [html, wrapCss2 css])] []
-
-  --css [Css.height (Css.pct 100),Css.width (Css.pct 100)]
+--css [Css.height (Css.pct 100),Css.width (Css.pct 100)]
 --renderCode : { a | htmleditorValue : String } -> Html msg
 --renderCode m  = iframe [srcdoc m.htmleditorValue, style "border" "none", css [Css.height (Css.vh 90.5),Css.width (Css.pct 100)]] []
+
+
 renderCode : { htmleditorValue : String, csseditorValue : String, viewBoth : Bool, size : Maybe Size } -> Html msg
-renderCode m  = iframe [srcdoc (String.concat [wrapCss2 m.csseditorValue, " ", m.htmleditorValue]), style "border" "none", css (cmCss2 m)] []
+renderCode m =
+    --iframe [ srcdoc (String.concat [ wrapCss2 m.csseditorValue, " ", m.htmleditorValue ]), style "border" "none", css (cmCss2 m) ] []
+    iframe [ srcdoc (prepareCode m.htmleditorValue m.csseditorValue), style "border" "none", css (cmCss2 m) ] []
+
+
+prepareCode : String -> String -> String
+prepareCode html css =
+    String.concat
+        [ """
+
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title></title> 
+    <style>"""
+        , css
+        , """
+    </style>
+</head>
+  <body>
+  """
+        , html,
+            """
+
+  </body>
+</html>
+"""
+        ]
 
 
 viewTwoEditors : Model -> Element Msg
@@ -311,9 +342,9 @@ viewTwoEditors m =
     Element.row rowStyle
         [ Element.column editorColumnStyle
             [ saveHTMLButton --saveAndChangeButton, changeViewButton
-            , el smallEditorstyle (html (toUnstyled (codemirrorHTML m ))) --el smallEditorstyle (html (codemirrorHTML m))
+            , el smallEditorstyle (html (toUnstyled (codemirrorHTML m))) --el smallEditorstyle (html (codemirrorHTML m))
             , saveCSSButton
-            , el smallEditorstyle (html (toUnstyled (codemirrorCSS m )))
+            , el smallEditorstyle (html (toUnstyled (codemirrorCSS m)))
             ]
         , resultCol m
         ]
@@ -324,9 +355,11 @@ viewOneEditor m =
     Element.column rowStyle
         [ saveHTMLButton
         , Element.row rowEditorResStyle
-            [ el bigEditorStyle (html (toUnstyled ( codemirrorHTML m )))
-         --   , el resultStyle (html (toUnstyled (div [] (wrapcss m.csseditorValue :: textHtml (removeSpaceandControl m.htmleditorValue)))))
-            , el resultStyle (html (toUnstyled(div [] [wrapcss m.csseditorValue, renderCode m] )))
+            [ el bigEditorStyle (html (toUnstyled (codemirrorHTML m)))
+
+            --   , el resultStyle (html (toUnstyled (div [] (wrapcss m.csseditorValue :: textHtml (removeSpaceandControl m.htmleditorValue)))))
+            , el resultStyle (html (toUnstyled (div [] [ wrapcss m.csseditorValue, renderCode m ])))
+
             --        , el hideEditor (html (toUnstyled(div [] [ cMcssFunHide m, codemirrorCSS m ])))
             ]
         ]
@@ -352,13 +385,21 @@ viewHelper m f =
 
 
 view : Model -> Html.Html Msg
-view m = toUnstyled (div [css [Css.height (Css.pct 100.0)]] [(cmCss m), --otherCss,--
-    fromUnstyled(if m.viewBoth then
-        viewHelper m viewTwoEditors
-        --viewTwoEditors
+view m =
+    toUnstyled
+        (div [ css [ Css.height (Css.pct 100.0) ] ]
+            [ cmCss m
+            , --otherCss,--
+              fromUnstyled
+                (if m.viewBoth then
+                    viewHelper m viewTwoEditors
+                    --viewTwoEditors
 
-    else
-        viewHelper m viewOneEditor)])
+                 else
+                    viewHelper m viewOneEditor
+                )
+            ]
+        )
 
 
 

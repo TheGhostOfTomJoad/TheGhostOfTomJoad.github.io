@@ -30,6 +30,24 @@ import './node_modules/codemirror/addon/search/searchcursor.js'
 //import './node_modules/codemirror/mode/preks/preks.js'
 //import './preks.js'
 
+import './node_modules/codemirror/addon/edit/matchbrackets.js'
+import './node_modules/codemirror/addon/fold/xml-fold.js'
+import './node_modules/codemirror/addon/fold/foldcode.js'
+//import './node_modules/codemirror/addon/fold/foldgutter.js'
+
+
+import './node_modules/codemirror/addon/edit/matchtags.js'
+// import './node_modules/codemirror/addon/edit/closebrackets.js'
+// import './node_modules/codemirror/addon/edit/closetag.js'
+
+
+// import './node_modules/codemirror/addon/comment/comment.js'
+// import './node_modules/codemirror/addon/comment/continuecomment.js'
+
+
+
+
+
 customElements.define('code-mirror',
   class extends HTMLElement {
     connectedCallback() {
@@ -45,10 +63,11 @@ customElements.define('code-mirror',
         //lint: {highlightLines: true},
         hint: true,
         foldGutter: true,
-        gutters: ["CodeMirror-lint-markers", "CodeMirror-linenumbers"],
-        matchTags: {
-          bothTags: true
-        }
+        gutters: ["CodeMirror-lint-markers", "CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+        matchTags: true,
+        matchBrackets:true
+       // autoCloseTags:true,
+        //autoCloseBrackets:true
 
       });
 

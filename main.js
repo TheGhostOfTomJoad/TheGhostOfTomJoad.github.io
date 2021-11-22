@@ -14170,6 +14170,12 @@ var $author$project$Main$cmCss2 = function (m) {
 	return b ? A2($author$project$Main$cmCssHelper1, s.Z - 70, (s.ag - 90) / 2) : A2($author$project$Main$cmCssHelper1, s.Z - 95, (s.ag - 90) / 2);
 };
 var $rtfeldman$elm_css$Html$Styled$iframe = $rtfeldman$elm_css$Html$Styled$node('iframe');
+var $author$project$Main$prepareCode = F2(
+	function (html, css) {
+		return $elm$core$String$concat(
+			_List_fromArray(
+				['\n\n<!DOCTYPE html>\n<html lang="de">\n  <head>\n    <meta charset="utf-8">\n    <title></title> \n    <style>', css, '\n    </style>\n</head>\n  <body>\n  ', html, '\n\n  </body>\n</html>\n']));
+	});
 var $rtfeldman$elm_css$VirtualDom$Styled$property = F2(
 	function (key, value) {
 		return A3(
@@ -14196,24 +14202,13 @@ var $rtfeldman$elm_css$VirtualDom$Styled$style = F2(
 			'');
 	});
 var $rtfeldman$elm_css$Html$Styled$Attributes$style = $rtfeldman$elm_css$VirtualDom$Styled$style;
-var $author$project$Main$wrapCss2 = function (css) {
-	return $elm$core$String$concat(
-		_List_fromArray(
-			['<style> ', css, ' </style>']));
-};
 var $author$project$Main$renderCode = function (m) {
 	return A2(
 		$rtfeldman$elm_css$Html$Styled$iframe,
 		_List_fromArray(
 			[
 				$rtfeldman$elm_css$Html$Styled$Attributes$srcdoc(
-				$elm$core$String$concat(
-					_List_fromArray(
-						[
-							$author$project$Main$wrapCss2(m.V),
-							' ',
-							m.an
-						]))),
+				A2($author$project$Main$prepareCode, m.an, m.V)),
 				A2($rtfeldman$elm_css$Html$Styled$Attributes$style, 'border', 'none'),
 				$rtfeldman$elm_css$Html$Styled$Attributes$css(
 				$author$project$Main$cmCss2(m))
