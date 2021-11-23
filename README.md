@@ -7,12 +7,9 @@ Write HTML-Code in the first editor and CSS in the second editor.
 ## To-Do
 
 <ul>
-<li>
-Implement the Possibility to switch between HTML and HTML/CSS mode.
-Its hardcoded now. You can change the 
-viewBoth variable in the init function and compile again to use another mode.
-</li> 
+
 <li> Cleanup Code  </li> 
+
 </ul>
 
 ## Try it
@@ -20,7 +17,7 @@ viewBoth variable in the init function and compile again to use another mode.
 <a href ="https://theghostoftomjoad.github.io/"> https://theghostoftomjoad.github.io/ </a>
 
 ## Build it
-Only the .elm files, package.json, index.html, myhtmlhint.js, mycsshint.js and, codemirror.css and custom_cssl-lint.js are necessary to build.
+Only the .elm files, package.json, elm.json, index.html, myhtmlhint.js, mycsshint.js and, codemirror.css and custom_cssl-lint.js are necessary to build.
 
 ```shell
 npm install
