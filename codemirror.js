@@ -63,8 +63,9 @@ customElements.define('code-mirror',
         //lint: {highlightLines: true},
         hint: true,
         foldGutter: true,
+        extraKeys: {"Ctrl-Space": "autocomplete"},
         gutters: ["CodeMirror-lint-markers", "CodeMirror-linenumbers", "CodeMirror-foldgutter"],
-        matchTags: true,
+        matchTags: {bothTags: true},
         matchBrackets:true
        // autoCloseTags:true,
         //autoCloseBrackets:true

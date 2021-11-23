@@ -5,8 +5,8 @@ module Main exposing (..)
 --import HtmlHelpers exposing (textHtml,removeSpaceandControl)
 
 import Browser
-import Browser.Dom as Dom
-import Browser.Events as E
+import Browser.Dom exposing (Viewport,getViewport)
+import Browser.Events exposing (onResize)
 import CodeMirror exposing (Mode(..), codemirror)
 import ComputeRemSpace exposing (computeAvHeightBig, computeAvHeightSmall, computeAvWidthBig, computeAvWidthSmall)
 import Css
@@ -18,9 +18,9 @@ import File.Download as Download
 import Html
 import Html.Styled exposing (Html, div, fromUnstyled, iframe, toUnstyled)
 import Html.Styled.Attributes exposing (css, srcdoc, style)
-import Json.Decode as D
+import Json.Decode exposing (Value)
 import Styles exposing (buttonstyle,resultStyle,rowStyle,textColumnStyle,editorColumnStyle,smallEditorstyle,spotifyColors)
-import Task as Task
+import Task exposing (perform)
 
 
 
@@ -53,9 +53,9 @@ cmCssHelper h w =
 --cmCss : Model -> Html msg
 cmCssWithHideSecondEditor : Model -> Html msg
 cmCssWithHideSecondEditor m =
-    let cssEditorStyle = [id "id-csseditor"  [descendants[everything[ Css.height (Css.px 0), Css.width (Css.px 0) ]]]]
+    let hideCssEditor = [id "id-csseditor"  [descendants[everything[ Css.height (Css.px 0), Css.width (Css.px 0) ]]]]
         onlyCMCss = [ class "CodeMirror" (cmCss m) ] 
-        res = if m.viewBoth then onlyCMCss else cssEditorStyle ++  onlyCMCss in
+        res = if m.viewBoth then onlyCMCss else hideCssEditor ++  onlyCMCss in
         global res
 
 
@@ -125,7 +125,7 @@ lookForSize m =
     m.size |> Maybe.withDefault { height = 980, width = 1852 }
 
 
-main : Program D.Value Model Msg
+main : Program Value Model Msg
 main =
     Browser.element
         { init = init
@@ -180,7 +180,7 @@ init _ =
       , viewBoth = True
       , size = Nothing
       }
-    , Dom.getViewport |> Task.perform Initialize
+    , getViewport |> perform Initialize
     )
 
 
@@ -191,7 +191,7 @@ type Msg
     | SaveHTML
     | SaveCSS
     | ChangeView
-    | Initialize Dom.Viewport
+    | Initialize Viewport
     | ChangeViewSize Float Float
 
 
@@ -442,7 +442,7 @@ view m =
 
 subscriptions : a -> Sub Msg
 subscriptions _ =
-    E.onResize (\w h -> ChangeViewSize (toFloat w) (toFloat h))
+    onResize (\w h -> ChangeViewSize (toFloat w) (toFloat h))
 
 
 -- htmlExample : String

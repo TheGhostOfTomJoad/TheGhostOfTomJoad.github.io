@@ -7736,7 +7736,7 @@ var $author$project$Main$cmCssWithHideSecondEditor = function (m) {
 			'CodeMirror',
 			$author$project$Main$cmCss(m))
 		]);
-	var cssEditorStyle = _List_fromArray(
+	var hideCssEditor = _List_fromArray(
 		[
 			A2(
 			$rtfeldman$elm_css$Css$Global$id,
@@ -7757,7 +7757,7 @@ var $author$project$Main$cmCssWithHideSecondEditor = function (m) {
 						]))
 				]))
 		]);
-	var res = m.ae ? onlyCMCss : _Utils_ap(cssEditorStyle, onlyCMCss);
+	var res = m.ae ? onlyCMCss : _Utils_ap(hideCssEditor, onlyCMCss);
 	return $rtfeldman$elm_css$Css$Global$global(res);
 };
 var $rtfeldman$elm_css$VirtualDom$Styled$Attribute = F3(
