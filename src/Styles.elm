@@ -52,9 +52,9 @@ smallEditorstyle =
     ]
 
 
-bigEditorHeight : number
-bigEditorHeight =
-    808
+-- bigEditorHeight : number
+-- bigEditorHeight =
+--     808
 
 
 bigEditorStyle : List (Attribute msg)
@@ -156,9 +156,9 @@ editorColumnStyle =
     ]
 
 
-rowEditorResStyle : List (Attribute msg)
-rowEditorResStyle =
-    [Background.color spotifyColors.background, Border.color spotifyColors.background, spacing spac, padding pad, height fill, width fill, Font.size 14 ]
+-- rowEditorResStyle : List (Attribute msg)
+-- rowEditorResStyle =
+--     [Background.color spotifyColors.background, Border.color spotifyColors.background, spacing spac, padding pad, height fill, width fill, Font.size 14 ]
 
 
 rowStyle : List (Attr () msg)
@@ -169,5 +169,5 @@ rowStyle =
          ,height fill, spacing 10, width fill, padding 10 ]
 
 
-hideEditor : List (Attribute msg)
-hideEditor = [width (px 0), height (px 0), spacing 0, padding 0,Border.width 0]
+-- hideEditor : List (Attribute msg)
+-- hideEditor = [width (px 0), height (px 0), spacing 0, padding 0,Border.width 0]

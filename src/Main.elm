@@ -7,19 +7,19 @@ module Main exposing (..)
 import Browser
 import Browser.Dom as Dom
 import Browser.Events as E
-import CodeMirror exposing (KeyMap(..), Mode(..), Theme(..), codemirrorHelper)
+import CodeMirror exposing (Mode(..), codemirror)
 import ComputeRemSpace exposing (computeAvHeightBig, computeAvHeightSmall, computeAvWidthBig, computeAvWidthSmall)
 import Css
-import Css.Global exposing (class, global,id,everything,descendants,typeSelector)
-import Element exposing (..)
+import Css.Global exposing (class, global,id,everything,descendants)
+import Element exposing (Element,text,spacing,el,html,px,layoutWith,focusStyle,fill,height,width)
 import Element.Input exposing (button)
 import Element.Keyed as EK
 import File.Download as Download
 import Html
-import Html.Styled exposing (Html, div, fromUnstyled, iframe, node, toUnstyled)
+import Html.Styled exposing (Html, div, fromUnstyled, iframe, toUnstyled)
 import Html.Styled.Attributes exposing (css, srcdoc, style)
 import Json.Decode as D
-import Styles exposing (..)
+import Styles exposing (buttonstyle,resultStyle,rowStyle,textColumnStyle,editorColumnStyle,smallEditorstyle,spotifyColors)
 import Task as Task
 
 
@@ -45,22 +45,22 @@ import Task as Task
 --cmCssHelper =
 
 
-cmCssHelper1 : Float -> Float -> List Css.Style
-cmCssHelper1 h w =
+cmCssHelper : Float -> Float -> List Css.Style
+cmCssHelper h w =
     [ Css.height (Css.px h), Css.width (Css.px w) ]
 
 
 --cmCss : Model -> Html msg
-cmCss : Model -> Html msg
-cmCss m =
+cmCssWithHideSecondEditor : Model -> Html msg
+cmCssWithHideSecondEditor m =
     let cssEditorStyle = [id "id-csseditor"  [descendants[everything[ Css.height (Css.px 0), Css.width (Css.px 0) ]]]]
-        x = [ class "CodeMirror" (cmCss1 m) ] 
-        res = if m.viewBoth then x else cssEditorStyle ++  x in
+        onlyCMCss = [ class "CodeMirror" (cmCss m) ] 
+        res = if m.viewBoth then onlyCMCss else cssEditorStyle ++  onlyCMCss in
         global res
 
 
-cmCss1 : Model -> List Css.Style
-cmCss1 m =
+cmCss : Model -> List Css.Style
+cmCss m =
     let
         s =
             lookForSize m
@@ -69,14 +69,14 @@ cmCss1 m =
             m.viewBoth
     in
     if b then
-        cmCssHelper1 (computeAvHeightSmall s.height) (computeAvWidthSmall s.width)
+        cmCssHelper (computeAvHeightSmall s.height) (computeAvWidthSmall s.width)
 
     else
-        cmCssHelper1 (computeAvHeightBig s.height) (computeAvWidthBig s.width)
+        cmCssHelper (computeAvHeightBig s.height) (computeAvWidthBig s.width)
 
 
-cmCss2 : Model -> List Css.Style
-cmCss2 m =
+resultCSS : Model -> List Css.Style
+resultCSS m =
     let
         s =
             lookForSize m
@@ -85,15 +85,15 @@ cmCss2 m =
             m.viewBoth
     in
     if b then
-        cmCssHelper1 (s.height - 70) ((s.width - 90) / 2)
+        cmCssHelper (s.height - 70) ((s.width - 90) / 2)
 
     else
-        cmCssHelper1 (s.height - 95) ((s.width - 90) / 2)
+        cmCssHelper (s.height - 95) ((s.width - 90) / 2)
 
 
-otherCss : Html msg
-otherCss =
-    global [ class "CodeMirror" [ Css.height (Css.vh 90.5) ] ]
+-- otherCss : Html msg
+-- otherCss =
+--     global [ class "CodeMirror" [ Css.height (Css.vh 90.5) ] ]
 
 
 
@@ -137,26 +137,26 @@ main =
 
 codemirrorHTML : { a | htmleditorValue : String } -> Html Msg
 codemirrorHTML m =
-    codemirrorHelper Sublime Monokai HTML HTMLEditorChanged "id-htmleditor" m.htmleditorValue
+    codemirror HTML HTMLEditorChanged "id-htmleditor" m.htmleditorValue
 
 
 codemirrorCSS : { a | csseditorValue : String } -> Html Msg
 codemirrorCSS m =
-    codemirrorHelper Sublime Monokai CSS CSSEditorChanged "id-csseditor" m.csseditorValue
+    codemirror CSS CSSEditorChanged "id-csseditor" m.csseditorValue
 
 
 
 --wrapcss : String -> Html msg
 
 
-wrapcss : String -> Html msg
-wrapcss myCssString =
-    node "style" [] [ Html.Styled.text myCssString ]
+-- wrapcss : String -> Html msg
+-- wrapcss myCssString =
+--     node "style" [] [ Html.Styled.text myCssString ]
 
 
-wrapCss2 : String -> String
-wrapCss2 css =
-    String.concat [ "<style> ", css, " </style>" ]
+-- wrapCss2 : String -> String
+-- wrapCss2 css =
+--     String.concat [ "<style> ", css, " </style>" ]
 
 
 type alias Model =
@@ -313,7 +313,7 @@ resultCol m =
 renderCode : { htmleditorValue : String, csseditorValue : String, viewBoth : Bool, size : Maybe Size } -> Html msg
 renderCode m =
     --iframe [ srcdoc (String.concat [ wrapCss2 m.csseditorValue, " ", m.htmleditorValue ]), style "border" "none", css (cmCss2 m) ] []
-    iframe [ srcdoc (prepareCode m.htmleditorValue m.csseditorValue), style "border" "none", css (cmCss2 m) ] []
+    iframe [ srcdoc (prepareCode m.htmleditorValue m.csseditorValue), style "border" "none", css (resultCSS m) ] []
 
 
 prepareCode : String -> String -> String
@@ -355,6 +355,7 @@ prepareCode html css =
 --         ]
 
 
+viewTwoEditors : { htmleditorValue : String, csseditorValue : String, viewBoth : Bool, size : Maybe Size } -> Element Msg
 viewTwoEditors m =
     Element.row rowStyle
         [ EK.column editorColumnStyle
@@ -366,6 +367,7 @@ viewTwoEditors m =
         , resultCol m
         ]
 
+viewOneEditor : { htmleditorValue : String, csseditorValue : String, viewBoth : Bool, size : Maybe Size } -> Element Msg
 viewOneEditor m =
     Element.row rowStyle
         [ EK.column editorColumnStyle
@@ -411,7 +413,7 @@ view : Model -> Html.Html Msg
 view m =
     toUnstyled
         (div [ css [ Css.height (Css.pct 100.0) ] ]
-            [ cmCss m
+            [ cmCssWithHideSecondEditor m
             , --otherCss,--
               fromUnstyled
                 (if m.viewBoth then
@@ -429,9 +431,9 @@ view m =
 --for debugging
 
 
-viewOnlyEditor : { a | editorValue : { b | htmleditorValue : String } } -> Html Msg
-viewOnlyEditor m =
-    codemirrorHTML m.editorValue
+-- viewOnlyEditor : { a | editorValue : { b | htmleditorValue : String } } -> Html Msg
+-- viewOnlyEditor m =
+--     codemirrorHTML m.editorValue
 
 
 
@@ -443,6 +445,6 @@ subscriptions _ =
     E.onResize (\w h -> ChangeViewSize (toFloat w) (toFloat h))
 
 
-htmlExample : String
-htmlExample =
-    "<p>HTML macht <strong> Spaß </strong> </p>"
+-- htmlExample : String
+-- htmlExample =
+--     "<p>HTML macht <strong> Spaß </strong> </p>"

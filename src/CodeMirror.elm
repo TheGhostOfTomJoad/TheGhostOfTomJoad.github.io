@@ -91,3 +91,7 @@ codemirrorHelper  km theme mode constructor cssid content  =
                     D.string
         ]
         []
+
+
+codemirror : Mode -> (String -> value) -> String -> String -> Html.Styled.Html value
+codemirror = codemirrorHelper Sublime Monokai
