@@ -176,7 +176,7 @@ type alias Model =
 init : a -> ( Model, Cmd Msg )
 init _ =
     ( { htmleditorValue = " <!--Write your HTML Code in this text field-->"
-      , csseditorValue = String.concat ["/* Write your CSS Code in this text field */", "\n /* table, th, td {border: 1px solid black;} */"]
+      , csseditorValue = String.concat ["/* Write your CSS Code in this text field */", "\n/* table, th, td {border: 1px solid black;} */"]
       , viewBoth = True
       , size = Nothing
       }
