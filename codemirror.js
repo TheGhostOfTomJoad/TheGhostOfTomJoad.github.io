@@ -6,7 +6,7 @@ import './node_modules/codemirror/addon/hint/show-hint.js'
 import './node_modules/codemirror/addon/hint/html-hint.js'
 import './node_modules/codemirror/addon/hint/xml-hint.js'
 import './node_modules/codemirror/addon/lint/html-lint.js'
-// import './node_modules/codemirror/addon/lint/css-lint.js'
+import './node_modules/codemirror/addon/lint/css-lint.js'
 import './custom_css-lint.js'
 import './node_modules/codemirror/addon/hint/css-hint.js'
 
@@ -34,11 +34,11 @@ import './node_modules/codemirror/addon/search/searchcursor.js'
 import './node_modules/codemirror/addon/edit/matchbrackets.js'
 import './node_modules/codemirror/addon/fold/xml-fold.js'
 import './node_modules/codemirror/addon/fold/foldcode.js'
-//import './node_modules/codemirror/addon/fold/foldgutter.js'
+import './node_modules/codemirror/addon/fold/foldgutter.js'
 
 
 import './node_modules/codemirror/addon/edit/matchtags.js'
-// import './node_modules/codemirror/addon/edit/closebrackets.js'
+import './node_modules/codemirror/addon/edit/closebrackets.js'
 // import './node_modules/codemirror/addon/edit/closetag.js'
 
 
