@@ -5365,7 +5365,7 @@ var $author$project$Main$init = function (_v0) {
 		{
 			aj: $elm$core$String$concat(
 				_List_fromArray(
-					['/* Write your CSS Code in this text field */', '\n/* table, th, td {border: 1px solid black;} */'])),
+					['/* Write your CSS Code in this text field */', '\n/* table, th, td {border-style: solid; border-color: black;} */'])),
 			ao: ' <!--Write your HTML Code in this text field-->',
 			bw: $elm$core$Maybe$Nothing,
 			ae: true
