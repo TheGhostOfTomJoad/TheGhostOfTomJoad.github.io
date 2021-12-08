@@ -8,36 +8,37 @@ import Html.Styled.Events exposing (on)
 import Json.Decode as D
 
 type Mode
-    = Markdown
-    | Haskell
-    | Python
-    | Preks
-    | HTML
-    | XML
+    = --Markdown
+    --| Haskell
+    --| Python
+    --| Preks
+    --| 
+    HTML
+  --  | XML
     | CSS
 
 
 modeToString : Mode -> String
 modeToString m =
     case m of
-        Markdown ->
-            "markdown"
+        -- Markdown ->
+        --     "markdown"
 
         HTML ->
             "text/html"
 
         --"htmlmixed"
-        XML ->
-            "xml"
+        -- XML ->
+        --     "xml"
 
-        Haskell ->
-            "haskell"
+        -- Haskell ->
+        --     "haskell"
 
-        Python ->
-            "python"
+        -- Python ->
+        --     "python"
 
-        Preks ->
-            "preks"
+        -- Preks ->
+        --     "preks"
 
         CSS ->
             "text/css"
@@ -45,7 +46,7 @@ modeToString m =
 
 type Theme
     = Monokai
-    | Eighties
+    --| Eighties
 
 
 themeToString : Theme -> String
@@ -54,24 +55,25 @@ themeToString t =
         Monokai ->
             "monokai"
 
-        Eighties ->
-            "tomorrow-night-eighties"
+        -- Eighties ->
+        --     "tomorrow-night-eighties"
 
 
 type KeyMap
-    = Vim
-    | Emacs
-    | Sublime
+    = --Vim
+    --| Emacs
+    --| 
+    Sublime
 
 
 keyMapToString : KeyMap -> String
 keyMapToString m =
-    case m of
-        Vim ->
-            "vim"
+     case m of
+    --     Vim ->
+    --         "vim"
 
-        Emacs ->
-            "emacs"
+    --     Emacs ->
+    --         "emacs"
 
         Sublime ->
             "sublime"

@@ -14242,12 +14242,12 @@ var $author$project$Main$changeViewButton = A2(
 		bP: $mdgriffith$elm_ui$Element$text('🎨'),
 		bU: $elm$core$Maybe$Just($author$project$Main$ChangeView)
 	});
-var $author$project$CodeMirror$CSS = 6;
+var $author$project$CodeMirror$CSS = 1;
 var $author$project$Main$CSSEditorChanged = function (a) {
 	return {$: 2, a: a};
 };
 var $author$project$CodeMirror$Monokai = 0;
-var $author$project$CodeMirror$Sublime = 2;
+var $author$project$CodeMirror$Sublime = 0;
 var $elm$json$Json$Decode$at = F2(
 	function (fields, decoder) {
 		return A3($elm$core$List$foldr, $elm$json$Json$Decode$field, decoder, fields);
@@ -14278,31 +14278,13 @@ var $rtfeldman$elm_css$Html$Styled$Attributes$stringProperty = F2(
 	});
 var $rtfeldman$elm_css$Html$Styled$Attributes$id = $rtfeldman$elm_css$Html$Styled$Attributes$stringProperty('id');
 var $author$project$CodeMirror$keyMapToString = function (m) {
-	switch (m) {
-		case 0:
-			return 'vim';
-		case 1:
-			return 'emacs';
-		default:
-			return 'sublime';
-	}
+	return 'sublime';
 };
 var $author$project$CodeMirror$modeToString = function (m) {
-	switch (m) {
-		case 0:
-			return 'markdown';
-		case 4:
-			return 'text/html';
-		case 5:
-			return 'xml';
-		case 1:
-			return 'haskell';
-		case 2:
-			return 'python';
-		case 3:
-			return 'preks';
-		default:
-			return 'text/css';
+	if (!m) {
+		return 'text/html';
+	} else {
+		return 'text/css';
 	}
 };
 var $rtfeldman$elm_css$VirtualDom$Styled$on = F2(
@@ -14321,11 +14303,7 @@ var $rtfeldman$elm_css$Html$Styled$Events$on = F2(
 			$elm$virtual_dom$VirtualDom$Normal(decoder));
 	});
 var $author$project$CodeMirror$themeToString = function (t) {
-	if (!t) {
-		return 'monokai';
-	} else {
-		return 'tomorrow-night-eighties';
-	}
+	return 'monokai';
 };
 var $author$project$CodeMirror$codemirrorHelper = F6(
 	function (km, theme, mode, constructor, cssid, content) {
@@ -14362,16 +14340,16 @@ var $author$project$CodeMirror$codemirrorHelper = F6(
 				]),
 			_List_Nil);
 	});
-var $author$project$CodeMirror$codemirror = A2($author$project$CodeMirror$codemirrorHelper, 2, 0);
+var $author$project$CodeMirror$codemirror = A2($author$project$CodeMirror$codemirrorHelper, 0, 0);
 var $author$project$Main$codemirrorCSS = function (m) {
-	return A4($author$project$CodeMirror$codemirror, 6, $author$project$Main$CSSEditorChanged, 'id-csseditor', m.aj);
+	return A4($author$project$CodeMirror$codemirror, 1, $author$project$Main$CSSEditorChanged, 'id-csseditor', m.aj);
 };
-var $author$project$CodeMirror$HTML = 4;
+var $author$project$CodeMirror$HTML = 0;
 var $author$project$Main$HTMLEditorChanged = function (a) {
 	return {$: 1, a: a};
 };
 var $author$project$Main$codemirrorHTML = function (m) {
-	return A4($author$project$CodeMirror$codemirror, 4, $author$project$Main$HTMLEditorChanged, 'id-htmleditor', m.ao);
+	return A4($author$project$CodeMirror$codemirror, 0, $author$project$Main$HTMLEditorChanged, 'id-htmleditor', m.ao);
 };
 var $mdgriffith$elm_ui$Internal$Model$AsColumn = 1;
 var $mdgriffith$elm_ui$Internal$Model$asColumn = 1;

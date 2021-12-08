@@ -1,6 +1,6 @@
 module Styles exposing (buttonstyle,textColumnStyle,rowStyle,editorColumnStyle,resultStyle,smallEditorstyle,spotifyColors)
 
-import Element exposing (..)
+import Element exposing (height,Color,rgb255,Attribute,spacing,padding,width,fill,Attr)
 import Element.Background as Background
 import Element.Border as Border
 import Element.Font as Font
