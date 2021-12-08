@@ -1,4 +1,4 @@
-module Styles exposing (..)
+module Styles exposing (buttonstyle,textColumnStyle,rowStyle,editorColumnStyle,resultStyle,smallEditorstyle,spotifyColors)
 
 import Element exposing (..)
 import Element.Background as Background
@@ -58,17 +58,17 @@ smallEditorstyle =
 --     808
 
 
-bigEditorStyle : List (Attribute msg)
-bigEditorStyle =
-    [ width fill --fill
-    ,Background.color spotifyColors.secondarytext
-    ,Border.color spotifyColors.background
-    --, height (px bigEditorHeight)
-    , height fill
-    , spacing spac
-    , padding pad
-   -- , Border.width 4
-    ]
+-- bigEditorStyle : List (Attribute msg)
+-- bigEditorStyle =
+--     [ width fill --fill
+--     ,Background.color spotifyColors.secondarytext
+--     ,Border.color spotifyColors.background
+--     --, height (px bigEditorHeight)
+--     , height fill
+--     , spacing spac
+--     , padding pad
+--    -- , Border.width 4
+--     ]
 
 
 
