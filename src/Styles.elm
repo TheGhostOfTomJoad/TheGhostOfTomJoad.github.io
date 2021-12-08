@@ -12,15 +12,16 @@ pad = 3
 spac : number
 spac = 0
 
-spotifyColors : { background : Color, menubar : Color, topgradient : Color, bottomgradient : Color, primarytext : Color, secondarytext : Color, black : Color }
+--spotifyColors : { background : Color, menubar : Color, topgradient : Color, bottomgradient : Color, primarytext : Color, secondarytext : Color, black : Color }
+spotifyColors : { background : Color, primarytext : Color, secondarytext : Color }
 spotifyColors =
     { background = rgb255 0x12 0x12 0x12
-    , menubar = rgb255 0x18 0x18 0x18
-    , topgradient = rgb255 0x40 0x40 0x40
-    , bottomgradient = rgb255 0x28 0x28 0x28
+   -- , menubar = rgb255 0x18 0x18 0x18
+   -- , topgradient = rgb255 0x40 0x40 0x40
+   -- , bottomgradient = rgb255 0x28 0x28 0x28
     , primarytext = rgb255 0xFF 0xFF 0xFF
     , secondarytext = rgb255 0xB3 0xB3 0xB3
-    , black = rgb255 0x00 0x00 0x00
+   -- , black = rgb255 0x00 0x00 0x00
     }
 
 

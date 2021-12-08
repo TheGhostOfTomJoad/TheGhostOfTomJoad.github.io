@@ -1,4 +1,4 @@
-module CodeMirror exposing (..)
+module CodeMirror exposing (codemirror,Mode(..))
 
 
 import Html.Styled exposing (node)
