@@ -7,7 +7,7 @@ import CodeMirror exposing (Mode(..), codemirror)
 import ComputeRemSpace exposing (computeAvHeightBig, computeAvHeightSmall, computeAvWidthBig, computeAvWidthSmall)
 import Css
 import Css.Global exposing (class, descendants, everything, global, id)
-import Element exposing (Element, el, fill, focusStyle, height, html, layoutWith, px, spacing, text, width)
+import Element exposing (Element, el, fill, focusStyle, height, html, layoutWith, px, text, width)
 import Element.Input exposing (button)
 import Element.Keyed as EK
 import File.Download as Download
