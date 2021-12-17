@@ -285,9 +285,9 @@ changeViewButton =
     button buttonstyle { label = text "🎨", onPress = Just ChangeView }
 
 
-saveAndChangeButton : Element Msg
-saveAndChangeButton =
-    Element.row [ spacing 750 ] [ saveHTMLButton, changeViewButton ]
+-- saveAndChangeButton : Element Msg
+-- saveAndChangeButton =
+--     Element.row [ spacing 750 ] [ saveHTMLButton, changeViewButton ]
 
 
 
